@@ -1,5 +1,7 @@
 <template>
   <header class="page-header">
+    <base-dialog :show="dialogVisible" @dialog-close="closeDialog">
+    </base-dialog>
     <h1>Tasko</h1>
     <button class="toggle" :class="{ back: menuVisible }" @click="toggleMenu">
       Menu
@@ -7,14 +9,14 @@
     <transition name="nav">
       <nav v-if="menuVisible">
         <ul class="menu">
-          <li><a href="#">Menu Item 1</a></li>
-          <li><a href="#">Menu Item 2</a></li>
-          <li><a href="#">Menu Item 3</a></li>
-          <li><a href="#">Menu Item 4</a></li>
-          <li><a href="#">Menu Item 5</a></li>
-          <li><a href="#">Menu Item 6</a></li>
-          <li><a href="#">Menu Item 7</a></li>
-          <li><button>New Task List</button></li>
+          <li v-for="category in categories" :key="category.id">
+            <a href="#">{{ category.name }}</a>
+          </li>
+          <li>
+            <button @click="newCategory">
+              <i class="fas fa-plus"></i> New Category
+            </button>
+          </li>
         </ul>
       </nav>
     </transition>
@@ -26,11 +28,24 @@ export default {
   data() {
     return {
       menuVisible: false,
+      dialogVisible: false,
     };
   },
   methods: {
     toggleMenu() {
       this.menuVisible = !this.menuVisible;
+    },
+    newCategory() {
+      this.menuVisible = false;
+      this.dialogVisible = true;
+    },
+    closeDialog() {
+      this.dialogVisible = false;
+    },
+  },
+  computed: {
+    categories() {
+      return this.$store.getters["category/categories"];
     },
   },
 };
@@ -99,14 +114,12 @@ nav > .menu a {
   color: inherit;
   text-decoration: none;
 }
-nav > .menu > li:first-child a {
-  padding-top: 0;
-}
 nav > .menu button {
   border: none;
   background-color: inherit;
   color: inherit;
   font-size: 1em;
+  margin: 0.5em 0;
   padding: 0.5em 1em;
   background-color: rgba(255, 255, 255, 0.1);
 }
@@ -116,9 +129,11 @@ nav > .menu button {
   opacity: 0;
   transform: translateY(-0.5em);
 }
-.nav-enter-active,
-.nav-leave-active {
+.nav-enter-active {
   transition: all 400ms ease-in;
+}
+.nav-leave-active {
+  transition: all 400ms ease-out;
 }
 .nav-enter-to,
 .nav-leave-from {

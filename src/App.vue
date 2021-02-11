@@ -5,6 +5,7 @@
 
 <script>
 import TheHeader from "./components/layout/TheHeader.vue";
+
 export default {
   components: {
     TheHeader,
@@ -22,6 +23,7 @@ export default {
   /* CSS variables for colors */
   --color-primary: #ff6666;
   --color-surface: #eee;
+  --color-secondary-surface: #fff;
   --color-accent: #9020f0;
   --color-surface-text: #333;
   --color-primary-text: #fff;
