@@ -1,5 +1,8 @@
 export default {
   createCategory(context, payload) {
-    context.commit("addCategory", payload.data);
+    context.commit("addCategory", {
+      id: new Date().toISOString(),
+      name: payload.category,
+    });
   },
 };

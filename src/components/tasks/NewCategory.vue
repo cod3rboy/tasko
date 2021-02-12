@@ -10,6 +10,7 @@
         <label for="category">Category Name</label>
         <input type="text" id="category" v-model.trim="categoryName" />
       </div>
+      <p v-if="!isValidCategory">Category name cannot be empty</p>
     </form>
   </base-dialog>
 </template>
@@ -26,6 +27,7 @@ export default {
   data() {
     return {
       categoryName: "",
+      isValidCategory: true,
     };
   },
   methods: {
@@ -33,7 +35,13 @@ export default {
       this.$emit("cancel");
     },
     saveCategory() {
-      this.$emit("save", this.categoryName);
+      this.isValidCategory = true;
+      const categoryName = this.categoryName;
+      if (categoryName === "") {
+        this.isValidCategory = false;
+        return;
+      }
+      this.$emit("save", categoryName);
       this.categoryName = "";
     },
   },

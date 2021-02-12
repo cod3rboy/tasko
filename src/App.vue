@@ -26,7 +26,9 @@ export default {
       this.showNewCategory = visible;
     },
     saveCategory(categoryName) {
-      console.log("Category Name " + categoryName);
+      this.$store.dispatch("category/createCategory", {
+        category: categoryName,
+      });
       this.setNewCategoryDialogVisible(false);
     },
   },
