@@ -5,6 +5,7 @@
     @save="saveCategory"
     @cancel="setNewCategoryDialogVisible(false)"
   ></new-category>
+  <the-tabs></the-tabs>
   <router-view></router-view>
   <base-float-button
     icon-code="f067"
@@ -15,11 +16,13 @@
 <script>
 import TheHeader from "./components/layout/TheHeader.vue";
 import NewCategory from "./components/tasks/NewCategory.vue";
+import TheTabs from "./components/tasks/TheTabs.vue";
 
 export default {
   components: {
     TheHeader,
     NewCategory,
+    TheTabs,
   },
   data() {
     return {
