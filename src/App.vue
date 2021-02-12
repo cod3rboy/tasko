@@ -6,6 +6,11 @@
     @cancel="setNewCategoryDialogVisible(false)"
   ></new-category>
   <router-view></router-view>
+  <base-float-button
+    icon-code="f067"
+    alt-text="Add Task"
+    @click="createNewTaskDialog"
+  ></base-float-button>
 </template>
 <script>
 import TheHeader from "./components/layout/TheHeader.vue";
@@ -31,6 +36,9 @@ export default {
       });
       this.setNewCategoryDialogVisible(false);
     },
+    createNewTaskDialog() {
+      alert("New Task");
+    },
   },
 };
 </script>
@@ -50,6 +58,8 @@ export default {
   --color-surface-text: #333;
   --color-primary-text: #fff;
   --color-accent-text: #fff;
+  --z-index-dialog: 0;
+  --z-index-fab: -1;
 }
 * {
   box-sizing: border-box;

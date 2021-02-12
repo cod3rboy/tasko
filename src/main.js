@@ -4,6 +4,7 @@ import router from "./router.js";
 import store from "./store/index.js";
 import BaseDialog from "./components/ui/BaseDialog.vue";
 import BaseButton from "./components/ui/BaseButton.vue";
+import BaseFloatButton from "./components/ui/BaseFloatButton.vue";
 
 //import "./index.css";
 
@@ -15,5 +16,6 @@ app.use(store);
 // Register global components
 app.component("base-dialog", BaseDialog);
 app.component("base-button", BaseButton);
+app.component("base-float-button", BaseFloatButton);
 
 app.mount("#app");

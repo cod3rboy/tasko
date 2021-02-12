@@ -33,6 +33,7 @@ export default {
   methods: {
     cancelDialog() {
       this.$emit("cancel");
+      this.reset();
     },
     saveCategory() {
       this.isValidCategory = true;
@@ -42,6 +43,10 @@ export default {
         return;
       }
       this.$emit("save", categoryName);
+      this.reset();
+    },
+    reset() {
+      this.isValidCategory = true;
       this.categoryName = "";
     },
   },
