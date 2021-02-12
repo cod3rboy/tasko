@@ -95,10 +95,11 @@ dialog {
 }
 .main .actions {
   display: flex;
-  justify-content: flex-end;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
-.actions > *:not(:first-child) {
-  margin-left: 1em;
+.actions > * {
+  margin: 0 auto;
 }
 /* Vue transition CSS classes */
 .v-enter-from,

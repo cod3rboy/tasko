@@ -1,14 +1,34 @@
 <template>
-  <the-header></the-header>
+  <the-header @new-category="setNewCategoryDialogVisible(true)"></the-header>
+  <new-category
+    :show="showNewCategory"
+    @save="saveCategory"
+    @cancel="setNewCategoryDialogVisible(false)"
+  ></new-category>
   <router-view></router-view>
 </template>
-
 <script>
 import TheHeader from "./components/layout/TheHeader.vue";
+import NewCategory from "./components/tasks/NewCategory.vue";
 
 export default {
   components: {
     TheHeader,
+    NewCategory,
+  },
+  data() {
+    return {
+      showNewCategory: false,
+    };
+  },
+  methods: {
+    setNewCategoryDialogVisible(visible) {
+      this.showNewCategory = visible;
+    },
+    saveCategory(categoryName) {
+      console.log("Category Name " + categoryName);
+      this.setNewCategoryDialogVisible(false);
+    },
   },
 };
 </script>

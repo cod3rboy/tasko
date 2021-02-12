@@ -1,7 +1,5 @@
 <template>
   <header class="page-header">
-    <base-dialog :show="dialogVisible" @dialog-close="closeDialog">
-    </base-dialog>
     <h1>Tasko</h1>
     <button class="toggle" :class="{ back: menuVisible }" @click="toggleMenu">
       Menu
@@ -25,10 +23,10 @@
 
 <script>
 export default {
+  emits: ["new-category"],
   data() {
     return {
       menuVisible: false,
-      dialogVisible: false,
     };
   },
   methods: {
@@ -37,10 +35,7 @@ export default {
     },
     newCategory() {
       this.menuVisible = false;
-      this.dialogVisible = true;
-    },
-    closeDialog() {
-      this.dialogVisible = false;
+      this.$emit("new-category");
     },
   },
   computed: {
