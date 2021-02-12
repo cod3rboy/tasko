@@ -37,7 +37,7 @@ export default {
 <style scoped>
 .fab {
   z-index: var(--z-index-fab);
-  position: absolute;
+  position: fixed;
   display: flex;
   flex-direction: row;
   bottom: 0;

@@ -1,9 +1,11 @@
 <template>
   <header class="page-header">
-    <h1>Tasko</h1>
-    <button class="toggle" :class="{ back: menuVisible }" @click="toggleMenu">
-      Menu
-    </button>
+    <div class="brand">
+      <button class="toggle" :class="{ back: menuVisible }" @click="toggleMenu">
+        Menu
+      </button>
+      <h1>Tasko</h1>
+    </div>
     <transition name="nav">
       <nav v-if="menuVisible">
         <ul class="menu">
@@ -51,30 +53,34 @@ export default {
   color: var(--color-primary-text);
   position: relative;
 }
-.page-header > h1 {
-  letter-spacing: 0.5rem;
-  padding: 0.25em;
-
+.page-header > .brand {
+  display: flex;
+  flex-flow: row nowrap;
   background-color: var(--color-primary);
+  padding: 0.5em;
+}
+
+.page-header > .brand > h1 {
+  letter-spacing: 0.5rem;
   text-align: center;
+  flex: 1 1 0%;
   text-transform: uppercase;
   margin: 0;
 }
-.page-header > .toggle {
-  position: absolute;
-  top: 0.5em;
-  left: 1em;
+.page-header > .brand > .toggle {
+  position: relative;
   width: 2em;
   height: 2em;
-  padding: 0;
+  flex: 0 0 inherit;
   color: inherit;
   text-indent: 5em;
   background-color: transparent;
   border: none;
   overflow: hidden;
   white-space: nowrap;
+  padding: 0em;
 }
-.page-header > .toggle::after {
+.page-header > .brand > .toggle::after {
   position: absolute;
   font-family: "Font Awesome 5 Free";
   font-weight: 900;

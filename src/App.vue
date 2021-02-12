@@ -1,22 +1,31 @@
 <template>
-  <the-header @new-category="setNewCategoryDialogVisible(true)"></the-header>
-  <new-category
-    :show="showNewCategory"
-    @save="saveCategory"
-    @cancel="setNewCategoryDialogVisible(false)"
-  ></new-category>
-  <the-tabs></the-tabs>
-  <router-view></router-view>
-  <base-float-button
-    icon-code="f067"
-    alt-text="Add Task"
-    @click="createNewTaskDialog"
-  ></base-float-button>
+  <div class="container">
+    <section class="header">
+      <the-header
+        @new-category="setNewCategoryDialogVisible(true)"
+      ></the-header>
+      <the-tabs></the-tabs>
+    </section>
+    <section class="main">
+      <router-view></router-view>
+      <base-float-button
+        icon-code="f067"
+        alt-text="Add Task"
+        @click="createNewTaskDialog"
+      >
+      </base-float-button>
+      <new-category
+        :show="showNewCategory"
+        @save="saveCategory"
+        @cancel="setNewCategoryDialogVisible(false)"
+      ></new-category>
+    </section>
+  </div>
 </template>
 <script>
 import TheHeader from "./components/layout/TheHeader.vue";
+import TheTabs from "./components/layout/TheTabs.vue";
 import NewCategory from "./components/tasks/NewCategory.vue";
-import TheTabs from "./components/tasks/TheTabs.vue";
 
 export default {
   components: {
@@ -90,5 +99,18 @@ body {
   overflow-y: auto;
   background: var(--color-surface);
   color: var(--color-surface-text);
+}
+section.container {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: 1fr;
+}
+section.header {
+  grid-row: 1 / 2;
+  grid-column: 1 / 2;
+}
+section.main {
+  grid-row: 2 / 3;
+  grid-column: 1 / 2;
 }
 </style>
