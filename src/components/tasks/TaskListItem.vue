@@ -7,7 +7,7 @@
       ></base-checkbox>
       <div class="detail">
         <div class="title">{{ taskItem.title }}</div>
-        <div class="date">Due Date : {{ taskItem.dueDate }}</div>
+        <div class="date">Due Date : {{ dueDate }}</div>
       </div>
     </div>
   </base-card>
@@ -16,6 +16,11 @@
 <script>
 export default {
   props: ["taskItem"],
+  computed: {
+    dueDate() {
+      return new Date(this.taskItem.dueDate).toLocaleString();
+    },
+  },
   methods: {
     setTaskStatus(taskFinished) {
       const payload = { taskId: this.taskItem.id };
@@ -30,9 +35,17 @@ export default {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
-  gap: 0.5em;
+  gap: 0.2em;
 }
 .flex-container > .detail {
   flex: 1 1 auto;
+}
+.detail .title {
+  color: var(--color-accent);
+}
+.detail .date {
+  color: var(--color-surface-text);
+  font-size: 0.6em;
+  margin: 0.5em 0;
 }
 </style>

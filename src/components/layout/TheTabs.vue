@@ -2,21 +2,30 @@
   <ul class="tab-container">
     <li class="tab-item active">
       <router-link
-        :to="{ name: 'active-tasks', params: { categoryId: category } }"
+        :to="{
+          name: 'task-list',
+          params: { categoryId: category, taskType: 'active' },
+        }"
       >
         <i class="far fa-clock"></i> Active
       </router-link>
     </li>
     <li class="tab-item">
       <router-link
-        :to="{ name: 'finished-tasks', params: { categoryId: category } }"
+        :to="{
+          name: 'task-list',
+          params: { categoryId: category, taskType: 'finished' },
+        }"
       >
         <i class="far fa-calendar-check"></i> Finished
       </router-link>
     </li>
     <li class="tab-item">
       <router-link
-        :to="{ name: 'missed-tasks', params: { categoryId: category } }"
+        :to="{
+          name: 'task-list',
+          params: { categoryId: category, taskType: 'missed' },
+        }"
       >
         <i class="far fa-calendar-times"></i> Missed
       </router-link>
