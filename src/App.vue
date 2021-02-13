@@ -7,7 +7,11 @@
       <the-tabs :category="activeCategory"></the-tabs>
     </section>
     <section class="main">
-      <router-view></router-view>
+      <router-view v-slot="{ Component }">
+        <transition mode="out-in">
+          <component :is="Component" />
+        </transition>
+      </router-view>
       <base-float-button
         icon-code="f067"
         alt-text="Add Task"
@@ -117,5 +121,24 @@ section.header {
 section.main {
   grid-row: 2 / 3;
   grid-column: 1 / 2;
+}
+
+/* Vue Transition Classes for <router-view> */
+.v-enter-from {
+  transform: translateX(-100vw);
+  opacity: 0;
+}
+.v-leave-to {
+  transform: translateX(100vw);
+  opacity: 0;
+}
+.v-enter-active,
+.v-leave-active {
+  transition: all 300ms ease-in-out;
+}
+.v-enter-to,
+.v-leave-from {
+  transform: translateX(0);
+  opacity: 1;
 }
 </style>

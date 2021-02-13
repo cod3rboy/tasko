@@ -1,16 +1,18 @@
 <template>
-  <base-card>
-    <div class="flex-container">
-      <base-checkbox
-        :checked="taskItem.finished"
-        @check-change="setTaskStatus"
-      ></base-checkbox>
-      <div class="detail">
-        <div class="title">{{ taskItem.title }}</div>
-        <div class="date">Due Date : {{ dueDate }}</div>
+  <li>
+    <base-card>
+      <div class="flex-container">
+        <base-checkbox
+          :checked="taskItem.finished"
+          @check-change="setTaskStatus"
+        ></base-checkbox>
+        <div class="detail">
+          <div class="title">{{ taskItem.title }}</div>
+          <div class="date">Due Date : {{ dueDate }}</div>
+        </div>
       </div>
-    </div>
-  </base-card>
+    </base-card>
+  </li>
 </template>
 
 <script>

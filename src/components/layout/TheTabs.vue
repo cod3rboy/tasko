@@ -3,8 +3,8 @@
     <li class="tab-item active">
       <router-link
         :to="{
-          name: 'task-list',
-          params: { categoryId: category, taskType: 'active' },
+          name: 'active-tasks',
+          params: { categoryId: category },
         }"
       >
         <i class="far fa-clock"></i> Active
@@ -13,8 +13,8 @@
     <li class="tab-item">
       <router-link
         :to="{
-          name: 'task-list',
-          params: { categoryId: category, taskType: 'finished' },
+          name: 'finished-tasks',
+          params: { categoryId: category },
         }"
       >
         <i class="far fa-calendar-check"></i> Finished
@@ -23,8 +23,8 @@
     <li class="tab-item">
       <router-link
         :to="{
-          name: 'task-list',
-          params: { categoryId: category, taskType: 'missed' },
+          name: 'missed-tasks',
+          params: { categoryId: category },
         }"
       >
         <i class="far fa-calendar-times"></i> Missed
