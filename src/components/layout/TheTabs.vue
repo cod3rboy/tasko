@@ -1,22 +1,39 @@
 <template>
   <ul class="tab-container">
     <li class="tab-item active">
-      <router-link :to="{ name: 'active-tasks' }">
+      <router-link
+        :to="{ name: 'active-tasks', params: { categoryId: category } }"
+      >
         <i class="far fa-clock"></i> Active
       </router-link>
     </li>
     <li class="tab-item">
-      <router-link :to="{ name: 'finished-tasks' }">
+      <router-link
+        :to="{ name: 'finished-tasks', params: { categoryId: category } }"
+      >
         <i class="far fa-calendar-check"></i> Finished
       </router-link>
     </li>
     <li class="tab-item">
-      <router-link :to="{ name: 'missed-tasks' }">
+      <router-link
+        :to="{ name: 'missed-tasks', params: { categoryId: category } }"
+      >
         <i class="far fa-calendar-times"></i> Missed
       </router-link>
     </li>
   </ul>
 </template>
+
+<script>
+export default {
+  props: {
+    category: {
+      type: String,
+      required: true,
+    },
+  },
+};
+</script>
 
 <style scoped>
 .tab-container {

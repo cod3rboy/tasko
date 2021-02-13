@@ -7,11 +7,29 @@ import MissedTaskList from "./pages/MissedTaskList.vue";
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-    { path: "/", redirect: { name: "active-tasks" } },
+    {
+      path: "/",
+      redirect: { name: "active-tasks", params: { categoryId: "c1" } },
+    },
     { path: "/new", component: NewTask, name: "new-task" },
-    { path: "/active", component: ActiveTaskList, name: "active-tasks" },
-    { path: "/finished", component: FinishedTaskList, name: "finished-tasks" },
-    { path: "/missed", component: MissedTaskList, name: "missed-tasks" },
+    {
+      path: "/:categoryId/active",
+      component: ActiveTaskList,
+      name: "active-tasks",
+      props: true,
+    },
+    {
+      path: "/:categoryId/finished",
+      component: FinishedTaskList,
+      name: "finished-tasks",
+      props: true,
+    },
+    {
+      path: "/:categoryId/missed",
+      component: MissedTaskList,
+      name: "missed-tasks",
+      props: true,
+    },
   ],
 });
 export default router;

@@ -4,7 +4,7 @@
       <the-header
         @new-category="setNewCategoryDialogVisible(true)"
       ></the-header>
-      <the-tabs></the-tabs>
+      <the-tabs :category="activeCategory"></the-tabs>
     </section>
     <section class="main">
       <router-view></router-view>
@@ -37,6 +37,11 @@ export default {
     return {
       showNewCategory: false,
     };
+  },
+  computed: {
+    activeCategory() {
+      return this.$route.params.categoryId;
+    },
   },
   methods: {
     setNewCategoryDialogVisible(visible) {
