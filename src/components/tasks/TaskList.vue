@@ -1,11 +1,11 @@
 <template>
-  <ul>
+  <transition-group name="task" tag="ul">
     <task-list-item
       v-for="task in tasks"
       :key="task.id"
       :task-item="task"
     ></task-list-item>
-  </ul>
+  </transition-group>
 </template>
 
 <script>
@@ -25,5 +25,17 @@ ul {
   list-style: none;
   padding: 0;
   margin: 0;
+}
+/* Vue css list item animation classes */
+.task-leave-from {
+  transform: translateX(0);
+  opacity: 1;
+}
+.task-leave-active {
+  transition: all 400ms ease-out 400ms;
+}
+.task-leave-to {
+  transform: translateX(-100vw);
+  opacity: 0;
 }
 </style>
