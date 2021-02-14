@@ -21,10 +21,11 @@ export default {
 
 <style scoped>
 ul {
+  position: relative;
+  padding: 0;
   font-size: 1.5rem;
   list-style: none;
-  padding: 0;
-  margin: 0;
+  margin: 0.4em;
 }
 /* Vue css list item animation classes */
 .task-leave-from {
@@ -32,10 +33,15 @@ ul {
   opacity: 1;
 }
 .task-leave-active {
+  position: absolute;
+  min-width: 100%;
   transition: all 400ms ease-out 400ms;
 }
 .task-leave-to {
   transform: translateX(-100vw);
   opacity: 0;
+}
+.task-move {
+  transition: transform 400ms ease 400ms;
 }
 </style>
