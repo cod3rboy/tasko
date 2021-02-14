@@ -4,12 +4,13 @@
       <the-header
         @new-category="setNewCategoryDialogVisible(true)"
       ></the-header>
-      <the-tabs :category="activeCategory"></the-tabs>
     </section>
     <section class="main">
+      <the-drawer v-if="drawerOpen"></the-drawer>
+      <the-tabs :category="activeCategory"></the-tabs>
       <router-view v-slot="{ Component }">
         <transition mode="out-in">
-          <component :is="Component" />
+          <component :is="Component" v-if="!drawerOpen" />
         </transition>
       </router-view>
       <base-float-button
@@ -29,6 +30,7 @@
 <script>
 import TheHeader from "./components/layout/TheHeader.vue";
 import TheTabs from "./components/layout/TheTabs.vue";
+import TheDrawer from "./components/layout/TheDrawer.vue";
 import NewCategory from "./components/tasks/NewCategory.vue";
 
 export default {
@@ -36,10 +38,12 @@ export default {
     TheHeader,
     NewCategory,
     TheTabs,
+    TheDrawer,
   },
   data() {
     return {
       showNewCategory: false,
+      drawerOpen: true,
     };
   },
   computed: {
@@ -75,12 +79,15 @@ export default {
   --color-primary: #ff6666;
   --color-surface: #eee;
   --color-secondary-surface: #fff;
+  --color-drawer-surface: #fff;
   --color-accent: #9020f0;
   --color-surface-text: #333;
   --color-primary-text: #fff;
   --color-accent-text: #fff;
-  --z-index-dialog: 1;
+  --color-drawer-text: #666;
   --z-index-fab: 0;
+  --z-index-drawer: 1;
+  --z-index-dialog: 2;
 }
 * {
   box-sizing: border-box;
@@ -109,10 +116,11 @@ body {
   background: var(--color-surface);
   color: var(--color-surface-text);
 }
-section.container {
+div.container {
   display: grid;
   grid-template-rows: auto 1fr;
   grid-template-columns: 1fr;
+  min-height: 100vh;
 }
 section.header {
   grid-row: 1 / 2;
