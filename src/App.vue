@@ -79,8 +79,8 @@ export default {
   --color-surface-text: #333;
   --color-primary-text: #fff;
   --color-accent-text: #fff;
-  --z-index-dialog: 0;
-  --z-index-fab: -1;
+  --z-index-dialog: 1;
+  --z-index-fab: 0;
 }
 * {
   box-sizing: border-box;

@@ -88,6 +88,105 @@ export default {
           finished: false,
           category: "c1",
         },
+        {
+          id: "task10",
+          title: "My Task 10",
+          description:
+            "This is the long description for my task 10. This is not really short description but a very very very looongg description.",
+          dueDate: new Date().getTime() + 1000 * 60 * 20, // 20 mins from now
+          finished: false,
+          category: "c1",
+        },
+        {
+          id: "task11",
+          title: "My Task 11",
+          description:
+            "This is the long description for my task 11. This is not really short description but a very very very looongg description.",
+          dueDate: new Date().getTime() + 1000 * 60 * 20, // 20 mins from now
+          finished: false,
+          category: "c1",
+        },
+        {
+          id: "task12",
+          title: "My Task 12",
+          description:
+            "This is the long description for my task 12. This is not really short description but a very very very looongg description.",
+          dueDate: new Date().getTime() + 1000 * 60 * 20, // 20 mins from now
+          finished: false,
+          category: "c1",
+        },
+        {
+          id: "task13",
+          title: "My Task 13",
+          description:
+            "This is the long description for my task 13. This is not really short description but a very very very looongg description.",
+          dueDate: new Date().getTime() + 1000 * 60 * 20, // 20 mins from now
+          finished: false,
+          category: "c1",
+        },
+        {
+          id: "task14",
+          title: "My Task 14",
+          description:
+            "This is the long description for my task 14. This is not really short description but a very very very looongg description.",
+          dueDate: new Date().getTime() + 1000 * 60 * 20, // 20 mins from now
+          finished: false,
+          category: "c1",
+        },
+        {
+          id: "task15",
+          title: "My Task 15",
+          description:
+            "This is the long description for my task 15. This is not really short description but a very very very looongg description.",
+          dueDate: new Date().getTime() + 1000 * 60 * 20, // 20 mins from now
+          finished: false,
+          category: "c1",
+        },
+        {
+          id: "task16",
+          title: "My Task 16",
+          description:
+            "This is the long description for my task 16. This is not really short description but a very very very looongg description.",
+          dueDate: new Date().getTime() + 1000 * 60 * 20, // 20 mins from now
+          finished: false,
+          category: "c1",
+        },
+        {
+          id: "task17",
+          title: "My Task 17",
+          description:
+            "This is the long description for my task 17. This is not really short description but a very very very looongg description.",
+          dueDate: new Date().getTime() + 1000 * 60 * 20, // 20 mins from now
+          finished: false,
+          category: "c1",
+        },
+        {
+          id: "task18",
+          title: "My Task 18",
+          description:
+            "This is the long description for my task 18. This is not really short description but a very very very looongg description.",
+          dueDate: new Date().getTime() + 1000 * 60 * 20, // 20 mins from now
+          finished: false,
+          category: "c1",
+        },
+        {
+          id: "task19",
+          title: "My Task 19",
+          description:
+            "This is the long description for my task 19. This is not really short description but a very very very looongg description.",
+          dueDate: new Date().getTime() + 1000 * 60 * 20, // 20 mins from now
+          finished: false,
+          category: "c1",
+        },
+        {
+          id: "task20",
+          title: "My Task 20",
+          description:
+            "This is the long description for my task 20. This is not really short description but a very very very looongg description.",
+          dueDate: new Date().getTime() + 1000 * 60 * 20, // 20 mins from now
+          finished: false,
+          category: "c1",
+        },
       ],
     };
   },
