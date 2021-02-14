@@ -1,5 +1,5 @@
 <template>
-  <div class="backdrop" v-if="isOpen"></div>
+  <div class="backdrop" v-if="isOpen" @click="$emit('close-drawer')"></div>
   <nav class="drawer" :class="{ closed: !isOpen }">
     <ul class="menu">
       <li class="menu-item"><a href="#">Menu Item 1</a></li>
@@ -17,6 +17,7 @@
 </template>
 <script>
 export default {
+  emits: ["close-drawer"],
   props: {
     isOpen: {
       type: Boolean,
@@ -44,7 +45,6 @@ export default {
   z-index: var(--z-index-drawer);
   height: 100%;
   min-width: 75%;
-  max-width: auto;
   color: var(--color-drawer-text);
   background-color: var(--color-drawer-surface);
   font-size: 1.8rem;

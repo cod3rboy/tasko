@@ -1,16 +1,20 @@
 <template>
-  <div class="container">
+  <div class="container" :class="{ fixed: navMenuVisible }">
     <section class="header">
       <the-header
-        @new-category="setNewCategoryDialogVisible(true)"
+        :isOpen="navMenuVisible"
+        @menu-toggle="toggleNavMenu"
       ></the-header>
     </section>
     <section class="main">
-      <the-drawer v-if="drawerOpen"></the-drawer>
+      <the-drawer
+        :isOpen="navMenuVisible"
+        @close-drawer="toggleNavMenu"
+      ></the-drawer>
       <the-tabs :category="activeCategory"></the-tabs>
       <router-view v-slot="{ Component }">
         <transition mode="out-in">
-          <component :is="Component" v-if="!drawerOpen" />
+          <component :is="Component" />
         </transition>
       </router-view>
       <base-float-button
@@ -43,7 +47,7 @@ export default {
   data() {
     return {
       showNewCategory: false,
-      drawerOpen: true,
+      navMenuVisible: false,
     };
   },
   computed: {
@@ -63,6 +67,9 @@ export default {
     },
     createNewTaskDialog() {
       alert("New Task");
+    },
+    toggleNavMenu() {
+      this.navMenuVisible = !this.navMenuVisible;
     },
   },
 };
@@ -122,11 +129,16 @@ div.container {
   grid-template-columns: 1fr;
   min-height: 100vh;
 }
+div.container.fixed {
+  height: 100vh;
+  overflow: hidden;
+}
 section.header {
   grid-row: 1 / 2;
   grid-column: 1 / 2;
 }
 section.main {
+  position: relative;
   grid-row: 2 / 3;
   grid-column: 1 / 2;
 }

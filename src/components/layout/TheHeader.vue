@@ -1,6 +1,6 @@
 <template>
   <header class="page-header">
-    <button class="toggle" :class="{ back: menuVisible }" @click="toggleMenu">
+    <button class="toggle" :class="{ back: isOpen }" @click="toggleMenu">
       Menu
     </button>
     <h1>Tasko</h1>
@@ -9,24 +9,17 @@
 
 <script>
 export default {
-  emits: ["new-category"],
-  data() {
-    return {
-      menuVisible: false,
-    };
+  emits: ["menu-toggle"],
+  props: {
+    isOpen: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
   },
   methods: {
     toggleMenu() {
-      this.menuVisible = !this.menuVisible;
-    },
-    newCategory() {
-      this.menuVisible = false;
-      this.$emit("new-category");
-    },
-  },
-  computed: {
-    categories() {
-      return this.$store.getters["category/categories"];
+      this.$emit("menu-toggle");
     },
   },
 };
