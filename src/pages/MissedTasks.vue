@@ -1,10 +1,9 @@
 <template>
-  <section>
-    <task-list :categoryId="categoryId" :tasks="missedTasks"></task-list>
-  </section>
+  <task-list :category-id="categoryId" :tasks="missedTasks"></task-list>
 </template>
 <script>
 import TaskList from "../components/tasks/TaskList.vue";
+
 export default {
   components: {
     TaskList,

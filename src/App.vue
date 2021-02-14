@@ -8,15 +8,12 @@
     </section>
     <section class="main">
       <the-drawer
-        :isOpen="navMenuVisible"
+        :is-open="navMenuVisible"
+        :nav-categories="allCategories"
         @close-drawer="toggleNavMenu"
+        @new-category="setNewCategoryDialogVisible(true)"
       ></the-drawer>
-      <the-tabs :category="activeCategory"></the-tabs>
-      <router-view v-slot="{ Component }">
-        <transition mode="out-in">
-          <component :is="Component" />
-        </transition>
-      </router-view>
+      <router-view></router-view>
       <base-float-button
         icon-code="f067"
         alt-text="Add Task"
@@ -33,7 +30,6 @@
 </template>
 <script>
 import TheHeader from "./components/layout/TheHeader.vue";
-import TheTabs from "./components/layout/TheTabs.vue";
 import TheDrawer from "./components/layout/TheDrawer.vue";
 import NewCategory from "./components/tasks/NewCategory.vue";
 
@@ -41,7 +37,6 @@ export default {
   components: {
     TheHeader,
     NewCategory,
-    TheTabs,
     TheDrawer,
   },
   data() {
@@ -51,8 +46,8 @@ export default {
     };
   },
   computed: {
-    activeCategory() {
-      return this.$route.params.categoryId;
+    allCategories() {
+      return this.$store.getters["category/categories"];
     },
   },
   methods: {
@@ -106,6 +101,7 @@ export default {
 html {
   font-size: 0.8em;
   font-weight: 400;
+  height: 100%;
   -webkit-text-size-adjust: 100%;
 }
 h1,
@@ -118,19 +114,22 @@ h6 {
 }
 body {
   margin: 0;
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow: auto;
+  height: 100%;
   background: var(--color-surface);
   color: var(--color-surface-text);
 }
+#app {
+  min-height: 100%;
+}
 div.container {
+  min-height: 100vh;
   display: grid;
   grid-template-rows: auto 1fr;
   grid-template-columns: 1fr;
-  min-height: 100vh;
 }
 div.container.fixed {
-  height: 100vh;
+  max-height: 100vh;
   overflow: hidden;
 }
 section.header {
@@ -141,24 +140,5 @@ section.main {
   position: relative;
   grid-row: 2 / 3;
   grid-column: 1 / 2;
-}
-
-/* Vue Transition Classes for <router-view> */
-.v-enter-from {
-  transform: translateX(-100vw);
-  opacity: 0;
-}
-.v-leave-to {
-  transform: translateX(100vw);
-  opacity: 0;
-}
-.v-enter-active,
-.v-leave-active {
-  transition: all 300ms ease-in-out;
-}
-.v-enter-to,
-.v-leave-from {
-  transform: translateX(0);
-  opacity: 1;
 }
 </style>

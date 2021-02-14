@@ -52,6 +52,8 @@ export default {
   background-color: transparent;
   border: none;
   overflow: hidden;
+  outline: none;
+  cursor: pointer;
   white-space: nowrap;
   padding: 0em;
 }
