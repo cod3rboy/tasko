@@ -45,7 +45,6 @@ export default {
   position: relative;
   width: 2em;
   height: 2em;
-  flex: 0 0 inherit;
   color: inherit;
   text-indent: 5em;
   background-color: transparent;
@@ -66,8 +65,5 @@ export default {
   text-indent: 0;
   top: 0em;
   left: 0em;
-}
-.page-header > .toggle.back::after {
-  content: "\f060";
 }
 </style>

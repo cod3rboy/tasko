@@ -5,14 +5,14 @@
         :isOpen="navMenuVisible"
         @menu-toggle="toggleNavMenu"
       ></the-header>
-    </section>
-    <section class="main" :class="{ fixed: navMenuVisible }">
       <the-drawer
         :is-open="navMenuVisible"
         :nav-categories="allCategories"
         @close-drawer="toggleNavMenu"
         @new-category="setNewCategoryDialogVisible(true)"
       ></the-drawer>
+    </section>
+    <section class="main" :class="{ fixed: navMenuVisible }">
       <router-view></router-view>
       <new-category
         :show="showNewCategory"

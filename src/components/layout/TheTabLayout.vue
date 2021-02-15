@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="tab-layout">
     <the-tabs :category="categoryId"></the-tabs>
     <router-view v-slot="{ Component }">
       <transition mode="out-in">
@@ -23,7 +23,6 @@ export default {
   },
 };
 </script>
-
 <style scoped>
 /* Vue Transition Classes for <router-view> */
 .v-enter-from {

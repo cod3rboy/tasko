@@ -1,13 +1,14 @@
 <template>
   <div class="backdrop" v-if="isOpen" @click="$emit('close-drawer')"></div>
   <nav class="drawer" :class="{ closed: !isOpen }">
+    <div class="brand">
+      <h1 class="brand-name">Tasko</h1>
+      <p class="tag-line">Go crazy with task management!</p>
+      <button class="toggle" @click="$emit('close-drawer')">
+        Close Drawer
+      </button>
+    </div>
     <ul class="menu">
-      <li class="menu-heading">New Category</li>
-      <li class="menu-item-action">
-        <button @click="$emit('new-category')">
-          <i class="fas fa-plus-square"></i> Create New
-        </button>
-      </li>
       <li class="menu-heading">Task Categories</li>
       <li
         class="menu-item"
@@ -20,6 +21,12 @@
         >
           <i class="fas fa-list-alt"></i> {{ category.name }}
         </router-link>
+      </li>
+      <li class="menu-heading">New Category</li>
+      <li class="menu-item-action">
+        <button @click="$emit('new-category')">
+          <i class="fas fa-plus-square"></i> Create New
+        </button>
       </li>
     </ul>
   </nav>
@@ -44,31 +51,96 @@ export default {
 <style scoped>
 .backdrop {
   z-index: var(--z-index-drawer);
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.25);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.25);
+  filter: blur(5px);
 }
 .drawer {
-  position: absolute;
+  position: fixed;
   z-index: var(--z-index-drawer);
-  height: 100%;
-  min-width: 75%;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  padding-bottom: 1em;
+  width: 100vw;
+  position: fixed;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: 1fr;
   color: var(--color-drawer-text);
   background-color: var(--color-drawer-surface);
   font-size: 1.8rem;
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow: hidden;
   transition: all 300ms ease;
 }
 .drawer.closed {
   transform: translateX(-100vw);
   opacity: 0;
 }
+.drawer > .brand {
+  position: relative;
+  letter-spacing: 0.5rem;
+  text-transform: uppercase;
+  margin: 0;
+  padding: 1rem 1.5rem 1rem 2rem;
+  background: var(--color-drawer-surface);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  color: var(--color-primary);
+  grid-row: 1 / 2;
+  grid-column: 1 / 2;
+}
+.brand > .brand-name {
+  margin: 0;
+  padding: 0;
+}
+.brand > .tag-line {
+  margin: 0.5em 0 0 0;
+  font-size: 1.2rem;
+  letter-spacing: 0;
+  color: var(--color-surface-text);
+  text-transform: none;
+}
+.brand > .toggle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 3em;
+  height: 3em;
+  margin: auto 0.5rem auto 0;
+  color: inherit;
+  text-indent: 5em;
+  background-color: transparent;
+  border: none;
+  overflow: hidden;
+  outline: none;
+  cursor: pointer;
+  white-space: nowrap;
+  padding: 0em;
+}
+.brand > .toggle::after {
+  position: absolute;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  font-size: 2.5em;
+  display: block;
+  content: "\f137";
+  text-indent: 0;
+  top: 0em;
+  left: 0em;
+}
+
 .drawer > .menu {
   list-style: none;
   padding: 0;
   margin: 0;
+  grid-row: 2 / 3;
+  grid-column: 1 / 2;
+  overflow: auto;
 }
 .menu-heading {
   display: block;
@@ -163,5 +235,12 @@ export default {
 }
 .menu-item-action:hover::after {
   transform: scaleX(1);
+}
+
+@supports (backdrop-filter: blur(8px)) {
+  .drawer {
+    background-color: transparent;
+    backdrop-filter: blur(8px);
+  }
 }
 </style>
