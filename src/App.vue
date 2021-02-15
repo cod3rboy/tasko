@@ -1,12 +1,12 @@
 <template>
-  <div class="container" :class="{ fixed: navMenuVisible }">
+  <div class="container">
     <section class="header">
       <the-header
         :isOpen="navMenuVisible"
         @menu-toggle="toggleNavMenu"
       ></the-header>
     </section>
-    <section class="main">
+    <section class="main" :class="{ fixed: navMenuVisible }">
       <the-drawer
         :is-open="navMenuVisible"
         :nav-categories="allCategories"
@@ -101,7 +101,6 @@ export default {
 html {
   font-size: 0.8em;
   font-weight: 400;
-  height: 100%;
   -webkit-text-size-adjust: 100%;
 }
 h1,
@@ -114,23 +113,14 @@ h6 {
 }
 body {
   margin: 0;
-  overflow: auto;
-  height: 100%;
   background: var(--color-surface);
   color: var(--color-surface-text);
 }
-#app {
-  min-height: 100%;
-}
 div.container {
-  min-height: 100vh;
+  height: 100vh;
   display: grid;
   grid-template-rows: auto 1fr;
   grid-template-columns: 1fr;
-}
-div.container.fixed {
-  max-height: 100vh;
-  overflow: hidden;
 }
 section.header {
   grid-row: 1 / 2;
@@ -138,7 +128,11 @@ section.header {
 }
 section.main {
   position: relative;
+  overflow: hidden auto;
   grid-row: 2 / 3;
   grid-column: 1 / 2;
+}
+section.main.fixed {
+  overflow: hidden;
 }
 </style>
