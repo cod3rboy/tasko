@@ -6,6 +6,12 @@
         <component :is="Component" />
       </transition>
     </router-view>
+    <base-float-button
+      icon-code="f067"
+      alt-text="Create New Task"
+      :link="{ name: 'new-task', params: { categoryId: categoryId } }"
+    >
+    </base-float-button>
   </section>
 </template>
 <script>

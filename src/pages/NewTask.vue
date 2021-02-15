@@ -1,7 +1,7 @@
 <template>
   <section>
     <header>
-      <h3>Create new task</h3>
+      <h3>Create new task : ({{ category.name }})</h3>
     </header>
     <form>
       <div class="form-control">
@@ -20,6 +20,18 @@
     </form>
   </section>
 </template>
+
+<script>
+export default {
+  props: ["categoryId"],
+  computed: {
+    category() {
+      const categories = this.$store.getters["category/categories"];
+      return categories.find((category) => category.id === this.categoryId);
+    },
+  },
+};
+</script>
 
 <style scoped>
 section > header {

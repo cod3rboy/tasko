@@ -1,9 +1,12 @@
 <template>
-  <teleport to="body">
-    <button class="fab" :style="icon" @click="$emit('click')">
+  <router-link :to="link" custom v-slot="{ navigate, href }" v-if="hasLink">
+    <a class="fab" :style="icon" :href="href" @click="navigate">
       {{ altText }}
-    </button>
-  </teleport>
+    </a>
+  </router-link>
+  <button class="fab" :style="icon" @click="$emit('click')" v-else>
+    {{ altText }}
+  </button>
 </template>
 
 <script>
@@ -22,6 +25,12 @@ export default {
     altText: {
       type: String,
       required: true,
+      default: "",
+    },
+    link: {
+      type: Object,
+      required: false,
+      default: null,
     },
   },
   computed: {
@@ -29,6 +38,9 @@ export default {
       return {
         "--icon-code": "'\\" + this.iconCode + "'",
       };
+    },
+    hasLink() {
+      return !!this.link && typeof this.link === "object";
     },
   },
 };
@@ -53,6 +65,7 @@ export default {
   border-radius: 10em;
   text-indent: -10em;
   overflow: hidden;
+  outline: none;
   box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.25);
 }
 .fab:hover {
@@ -65,6 +78,7 @@ export default {
   font-family: "Font Awesome 5 Free";
   align-self: center;
   font-weight: 900;
+  text-align: center;
   content: var(--icon-code);
   position: absolute;
   text-indent: 0;

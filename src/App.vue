@@ -14,12 +14,6 @@
         @new-category="setNewCategoryDialogVisible(true)"
       ></the-drawer>
       <router-view></router-view>
-      <base-float-button
-        icon-code="f067"
-        alt-text="Add Task"
-        @click="createNewTaskDialog"
-      >
-      </base-float-button>
       <new-category
         :show="showNewCategory"
         @save="saveCategory"
@@ -59,9 +53,6 @@ export default {
         category: categoryName,
       });
       this.setNewCategoryDialogVisible(false);
-    },
-    createNewTaskDialog() {
-      alert("New Task");
     },
     toggleNavMenu() {
       this.navMenuVisible = !this.navMenuVisible;

@@ -8,7 +8,12 @@ import MissedTasks from "./pages/MissedTasks.vue";
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-    { path: "/new", component: NewTask, name: "new-task" },
+    {
+      path: "/:categoryId/new",
+      component: NewTask,
+      name: "new-task",
+      props: true,
+    },
     {
       path: "/:categoryId",
       name: "category-tasks",
