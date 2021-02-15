@@ -11,4 +11,12 @@ export default {
       taskId: payload.taskId,
     });
   },
+  createTask(context, payload) {
+    const task = {
+      id: new Date().toISOString(),
+      finished: false,
+      ...payload,
+    };
+    context.commit("addTask", task);
+  },
 };

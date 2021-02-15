@@ -1,17 +1,36 @@
 <template>
-  <button class="btn" :class="{ 'btn--primary': isPrimary }">
+  <button class="btn" :class="styleModifier">
     <slot></slot>
   </button>
 </template>
 
 <script>
+const btnStyleModifiers = {
+  primary: "btn--primary",
+  accent: "btn--accent",
+  secondary: "",
+};
 export default {
   props: {
-    isPrimary: {
-      type: Boolean,
+    look: {
+      type: String,
       required: false,
-      default: true,
+      default: "primary",
+      validator: (value) => {
+        const btnModifier = value.trim().toLowerCase();
+        return btnModifier in btnStyleModifiers;
+      },
     },
+  },
+  computed: {
+    styleModifier() {
+      return this.styleModifiers[this.look];
+    },
+  },
+  data() {
+    return {
+      styleModifiers: btnStyleModifiers,
+    };
   },
 };
 </script>
@@ -31,6 +50,10 @@ export default {
 .btn--primary {
   background-color: var(--color-primary);
   color: var(--color-primary-text);
+}
+.btn--accent {
+  background-color: var(--color-accent);
+  color: var(--color-accent-text);
 }
 .btn:hover {
   filter: brightness(1.1);

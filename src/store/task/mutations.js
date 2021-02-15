@@ -5,4 +5,7 @@ export default {
     const targetTask = state.tasks.find((task) => task.id === taskId);
     targetTask.finished = taskStatus;
   },
+  addTask(state, payload) {
+    state.tasks.unshift(payload);
+  },
 };
