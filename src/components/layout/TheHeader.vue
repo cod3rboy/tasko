@@ -1,9 +1,9 @@
 <template>
   <header class="page-header">
+    <h1>Tasko</h1>
     <button class="toggle" :class="{ back: isOpen }" @click="toggleMenu">
       Menu
     </button>
-    <h1>Tasko</h1>
   </header>
 </template>
 
@@ -32,12 +32,11 @@ export default {
   position: relative;
   flex-flow: row nowrap;
   background-color: var(--color-primary);
-  padding: 0.5em;
+  padding: 1em;
 }
 
 .page-header > h1 {
   letter-spacing: 0.5rem;
-  text-align: center;
   flex: 1 1 0%;
   text-transform: uppercase;
   margin: 0;
