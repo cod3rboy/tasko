@@ -116,6 +116,7 @@ export default {
   left: 0;
   right: 0;
   border: 0.08em solid var(--color-primary);
+  border-left: none;
   border-top-right-radius: 10em;
   border-bottom-right-radius: 10em;
   transform: scaleX(0);
