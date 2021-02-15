@@ -1,8 +1,5 @@
 <template>
-  <section>
-    <header>
-      <h3>Create new task : ({{ category.name }})</h3>
-    </header>
+  <base-page title="Create New Task" :subtitle="subtitle">
     <form>
       <div class="form-control">
         <label for="tasktitle">Task Title</label>
@@ -18,7 +15,7 @@
       </div>
       <button>Create</button>
     </form>
-  </section>
+  </base-page>
 </template>
 
 <script>
@@ -28,6 +25,9 @@ export default {
     category() {
       const categories = this.$store.getters["category/categories"];
       return categories.find((category) => category.id === this.categoryId);
+    },
+    subtitle() {
+      return "Category: " + this.category.name;
     },
   },
 };
