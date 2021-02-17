@@ -66,13 +66,15 @@ export default {
   margin: 0.8em 0;
 }
 .field > label {
+  display: block;
   font-size: 1.5rem;
   color: var(--color-accent);
   font-weight: bold;
+  padding-bottom: 0.25em;
 }
 .field > .value {
   font-size: 1.8rem;
   padding: 0.25rem 0.25rem 0.25rem 0;
-  border-top: 1px solid rgba(0,0,0,0.05);
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
 </style>

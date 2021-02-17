@@ -19,7 +19,10 @@ export default {
   },
   methods: {
     openTaskItem(taskItem) {
-      console.log(taskItem);
+      this.$router.push({
+        name: "task-detail",
+        params: { taskId: taskItem.id },
+      });
     },
   },
 };

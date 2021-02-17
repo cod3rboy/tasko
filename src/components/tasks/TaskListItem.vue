@@ -8,7 +8,15 @@
           @click.stop
         ></base-checkbox>
         <div class="detail">
-          <div class="title">{{ taskItem.title }}</div>
+          <router-link :to="taskDetailLink" custom v-slot="{ navigate, href }">
+            <a
+              class="title"
+              :class="{ strikethrough: taskItem.finished }"
+              :href="href"
+              @click="navigate"
+              >{{ taskItem.title }}</a
+            >
+          </router-link>
           <div class="date">Due Date : {{ dueDate }}</div>
         </div>
       </div>
@@ -23,6 +31,12 @@ export default {
   computed: {
     dueDate() {
       return new Date(this.taskItem.dueDate).toLocaleString();
+    },
+    taskDetailLink() {
+      return {
+        name: "task-detail",
+        params: { taskId: this.taskItem.id },
+      };
     },
   },
   methods: {
@@ -62,6 +76,10 @@ export default {
 }
 .detail .title {
   color: var(--color-accent);
+  text-decoration: none;
+}
+.detail .title.strikethrough {
+  text-decoration: line-through;
 }
 .detail .date {
   color: var(--color-surface-text);
