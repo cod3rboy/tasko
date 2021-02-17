@@ -1,6 +1,6 @@
 <template>
   <li>
-    <base-card>
+    <base-card padding="0">
       <div class="flex-container">
         <base-checkbox
           :checked="taskItem.finished"
