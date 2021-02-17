@@ -4,6 +4,7 @@
       v-for="task in tasks"
       :key="task.id"
       :task-item="task"
+      @item-click="openTaskItem"
     ></task-list-item>
   </transition-group>
 </template>
@@ -15,6 +16,11 @@ export default {
   props: ["categoryId", "tasks"],
   components: {
     TaskListItem,
+  },
+  methods: {
+    openTaskItem(taskItem) {
+      console.log(taskItem);
+    },
   },
 };
 </script>

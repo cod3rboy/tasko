@@ -1,13 +1,13 @@
 <template>
   <li>
     <base-card padding="0">
-      <div class="flex-container">
+      <div class="flex-container" @click="$emit('item-click', taskItem)">
         <base-checkbox
           :checked="taskItem.finished"
           @check-change="setTaskStatus"
           @click.stop
         ></base-checkbox>
-        <div class="detail" tabindex="0">
+        <div class="detail">
           <div class="title">{{ taskItem.title }}</div>
           <div class="date">Due Date : {{ dueDate }}</div>
         </div>
@@ -18,6 +18,7 @@
 
 <script>
 export default {
+  emits: ["item-click"],
   props: ["taskItem"],
   computed: {
     dueDate() {
@@ -57,6 +58,7 @@ export default {
 }
 .flex-container > .detail {
   flex: 1 1 auto;
+  outline: none;
 }
 .detail .title {
   color: var(--color-accent);

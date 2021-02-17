@@ -67,6 +67,7 @@ export default {
   overflow: hidden;
   outline: none;
   box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
 }
 .fab:hover {
   filter: brightness(1.2);

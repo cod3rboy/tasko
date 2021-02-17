@@ -34,7 +34,7 @@
           {{ dateValidation.invalidMessage }}
         </p>
       </div>
-      <base-float-button alt-text="Create" icon-code="f0c7"></base-float-button>
+      <base-float-button alt-text="Save Task" icon-code="f0c7"></base-float-button>
     </form>
   </base-page>
 </template>

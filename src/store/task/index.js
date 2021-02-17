@@ -91,8 +91,7 @@ export default {
         {
           id: "task10",
           title: "My Task 10",
-          description:
-            "This is the long description for my task 10. This is not really short description but a very very very looongg description.",
+          description: "",
           dueDate: new Date().getTime() + 1000 * 60 * 20, // 20 mins from now
           finished: false,
           category: "c1",
