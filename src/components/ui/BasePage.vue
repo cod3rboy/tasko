@@ -44,7 +44,7 @@ export default {
 <style scoped>
 .page {
   display: grid;
-  font-size: 1rem;
+  font-size: 1.25rem;
   background-color: var(--color-secondary-surface);
   grid-template-rows: auto 1fr;
   grid-template-columns: 1fr;
@@ -61,7 +61,7 @@ export default {
 .heading,
 .content {
   padding: 0 1em;
-  margin: 0.5em 0;
+  margin: 1em 0 0.5em 0;
 }
 .title,
 .subtitle {

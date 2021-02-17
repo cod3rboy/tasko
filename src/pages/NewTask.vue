@@ -99,7 +99,7 @@ export default {
 
 <style scoped>
 .form-control {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   display: flex;
   flex-flow: column nowrap;
   margin: 1em 0;
