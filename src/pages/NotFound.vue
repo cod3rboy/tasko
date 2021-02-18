@@ -1,7 +1,11 @@
 <template>
   <div class="content">
-    <h1 class="heading">Not Found</h1>
-    <p class="sub-heading">Not Found</p>
+    <img class="img-responsive" src="/puppy.png" alt="Sad Puppy" />
+    <h1 class="heading">404</h1>
+    <p class="sub-heading" v-if="notFound !== ''">
+      Found nothing at <b>{{ notFound }}</b>
+    </p>
+    <p class="sub-heading">You reached dead end!</p>
   </div>
 </template>
 
@@ -34,5 +38,11 @@ export default {
 }
 .sub-heading {
   margin: inherit;
+}
+.img-responsive {
+  width: 100%;
+  max-width: 50%;
+  margin: 0 auto;
+  height: auto;
 }
 </style>
