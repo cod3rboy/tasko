@@ -19,4 +19,7 @@ export default {
     };
     context.commit("addTask", task);
   },
+  saveTask(context, payload) {
+    context.commit("updateTask", payload);
+  },
 };

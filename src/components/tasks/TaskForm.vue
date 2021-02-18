@@ -42,12 +42,29 @@
 
 <script>
 export default {
+  props: {
+    initialData: {
+      type: Object,
+      required: false,
+      default: {},
+    },
+  },
   emits: ["form-submit"],
   data() {
+    const taskTitle = !!this.initialData.title ? this.initialData.title : "";
+    const taskDesc = !!this.initialData.description
+      ? this.initialData.description
+      : "";
+    const taskDueDate = !!this.initialData.dueDate
+      ? new Date(this.initialData.dueDate)
+          .toISOString()
+          .split(".")[0]
+          .slice(0, -3)
+      : "";
     return {
-      taskTitle: "",
-      taskDesc: "",
-      taskDueDate: "",
+      taskTitle,
+      taskDesc,
+      taskDueDate,
       titleValidation: {
         isValid: true,
         invalidMessage: "Task title cannot be empty!",
@@ -58,6 +75,7 @@ export default {
       },
     };
   },
+
   methods: {
     tryValidateTitle() {
       this.titleValidation.isValid = this.taskTitle !== "";
@@ -75,7 +93,7 @@ export default {
       const formData = {
         title: this.taskTitle,
         description: this.taskDesc,
-        dueDate: new Date(this.taskDueDate),
+        dueDate: new Date(this.taskDueDate).getTime(),
       };
       this.$emit("form-submit", formData);
     },

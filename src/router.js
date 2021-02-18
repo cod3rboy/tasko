@@ -5,6 +5,7 @@ import TheTabLayout from "./components/layout/TheTabLayout.vue";
 import FinishedTasks from "./pages/FinishedTasks.vue";
 import MissedTasks from "./pages/MissedTasks.vue";
 import TaskDetail from "./pages/TaskDetail.vue";
+import EditTask from "./pages/EditTask.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -51,6 +52,12 @@ const router = createRouter({
       path: "/tasks/:taskId",
       name: "task-detail",
       component: TaskDetail,
+      props: true,
+    },
+    {
+      path: "/tasks/:taskId/edit",
+      name: "task-edit",
+      component: EditTask,
       props: true,
     },
   ],

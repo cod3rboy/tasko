@@ -20,6 +20,7 @@
     <base-float-button
       alt-text="Edit Task"
       icon-code="f303"
+      :link="editTaskLink"
     ></base-float-button>
   </base-page>
 </template>
@@ -56,6 +57,12 @@ export default {
       } else {
         return "Missed";
       }
+    },
+    editTaskLink() {
+      return {
+        name: "task-edit",
+        params: { taskId: this.task.id },
+      };
     },
   },
 };
