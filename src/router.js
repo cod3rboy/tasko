@@ -6,6 +6,7 @@ import FinishedTasks from "./pages/FinishedTasks.vue";
 import MissedTasks from "./pages/MissedTasks.vue";
 import TaskDetail from "./pages/TaskDetail.vue";
 import EditTask from "./pages/EditTask.vue";
+import NotFound from "./pages/NotFound.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -58,6 +59,13 @@ const router = createRouter({
       path: "/tasks/:taskId/edit",
       name: "task-edit",
       component: EditTask,
+      props: true,
+    },
+    {
+      // Not Found Route
+      path: "/:notFound(.*)",
+      name: "not-found",
+      component: NotFound,
       props: true,
     },
   ],
