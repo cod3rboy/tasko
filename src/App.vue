@@ -84,10 +84,11 @@ export default {
   --color-primary-text: #fff;
   --color-accent-text: #fff;
   --color-drawer-text: #666;
+  --color-danger: #f33;
+  --color-success: #3c3;
   --z-index-fab: 0;
   --z-index-drawer: 1;
   --z-index-dialog: 2;
-  --color-danger: #f33;
 }
 * {
   box-sizing: border-box;

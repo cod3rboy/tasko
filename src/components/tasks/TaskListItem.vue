@@ -18,6 +18,19 @@
             >
           </router-link>
           <div class="date">Due Date : {{ dueDate }}</div>
+          <div class="actions">
+            <base-round-button
+              icon-code="f304"
+              theme="success"
+              alt-text="Edit Task"
+              :link="taskEditLink"
+            ></base-round-button>
+            <base-round-button
+              icon-code="f2ed"
+              theme="danger"
+              alt-text="Delete Task"
+            ></base-round-button>
+          </div>
         </div>
       </div>
     </base-card>
@@ -35,6 +48,12 @@ export default {
     taskDetailLink() {
       return {
         name: "task-detail",
+        params: { taskId: this.taskItem.id },
+      };
+    },
+    taskEditLink() {
+      return {
+        name: "task-edit",
         params: { taskId: this.taskItem.id },
       };
     },
@@ -72,7 +91,6 @@ export default {
 }
 .flex-container > .detail {
   flex: 1 1 auto;
-  outline: none;
 }
 .detail .title {
   color: var(--color-accent);
@@ -85,5 +103,9 @@ export default {
   color: var(--color-surface-text);
   font-size: 0.6em;
   margin: 0.5em 0;
+}
+.detail .actions {
+  display: flex;
+  gap: 0.5em;
 }
 </style>
