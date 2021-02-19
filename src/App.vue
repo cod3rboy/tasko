@@ -2,17 +2,17 @@
   <div class="container">
     <section class="header">
       <the-header
-        :isOpen="navMenuVisible"
+        :isOpen="isDrawerVisible"
         @menu-toggle="toggleNavMenu"
       ></the-header>
       <the-drawer
-        :is-open="navMenuVisible"
+        :is-open="isDrawerVisible"
         :nav-categories="allCategories"
         @close-drawer="toggleNavMenu"
         @new-category="setNewCategoryDialogVisible(true)"
       ></the-drawer>
     </section>
-    <section class="main" :class="{ fixed: navMenuVisible }">
+    <section class="main">
       <router-view></router-view>
       <new-category
         :show="showNewCategory"
@@ -36,12 +36,14 @@ export default {
   data() {
     return {
       showNewCategory: false,
-      navMenuVisible: false,
     };
   },
   computed: {
     allCategories() {
       return this.$store.getters["category/categories"];
+    },
+    isDrawerVisible() {
+      return this.$store.getters.isDrawerVisible;
     },
   },
   methods: {
@@ -55,7 +57,11 @@ export default {
       this.setNewCategoryDialogVisible(false);
     },
     toggleNavMenu() {
-      this.navMenuVisible = !this.navMenuVisible;
+      if (this.isDrawerVisible) {
+        this.$store.dispatch("hideDrawer");
+      } else {
+        this.$store.dispatch("showDrawer");
+      }
     },
   },
 };
@@ -120,11 +126,8 @@ section.header {
 }
 section.main {
   position: relative;
-  overflow: hidden auto;
+  overflow: hidden;
   grid-row: 2 / 3;
   grid-column: 1 / 2;
-}
-section.main.fixed {
-  overflow: hidden;
 }
 </style>

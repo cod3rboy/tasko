@@ -1,10 +1,22 @@
 <template>
   <router-link :to="link" custom v-slot="{ navigate, href }" v-if="hasLink">
-    <a class="fab" :style="icon" :href="href" @click="navigate">
+    <a
+      class="fab"
+      :class="{ hide: !visible }"
+      :style="icon"
+      :href="href"
+      @click="navigate"
+    >
       {{ altText }}
     </a>
   </router-link>
-  <button class="fab" :style="icon" @click="$emit('click')" v-else>
+  <button
+    class="fab"
+    :class="{ hide: !visible }"
+    :style="icon"
+    @click="$emit('click')"
+    v-else
+  >
     {{ altText }}
   </button>
 </template>
@@ -31,6 +43,11 @@ export default {
       type: Object,
       required: false,
       default: null,
+    },
+    visible: {
+      type: Boolean,
+      required: false,
+      default: true,
     },
   },
   computed: {
@@ -68,6 +85,10 @@ export default {
   outline: none;
   box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.25);
   cursor: pointer;
+  transition: transform 200ms ease;
+}
+.fab.hide {
+  transform: scale(0);
 }
 .fab:hover {
   filter: brightness(1.2);
