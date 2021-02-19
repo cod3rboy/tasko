@@ -13,8 +13,8 @@ import BasePage from "./components/ui/BasePage.vue";
 
 const app = createApp(App);
 
-app.use(router);
 app.use(store);
+app.use(router);
 
 // Register global components
 app.component("base-dialog", BaseDialog);
