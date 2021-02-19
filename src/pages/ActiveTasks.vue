@@ -20,13 +20,5 @@ export default {
       );
     },
   },
-  mounted() {
-    if (this.activeTasks.length === 0) {
-      this.$router.replace({
-        name: "not-found",
-        params: { notFound: this.$route.path.substring(1).split("/") },
-      });
-    }
-  },
 };
 </script>
