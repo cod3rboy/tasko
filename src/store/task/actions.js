@@ -22,4 +22,7 @@ export default {
   saveTask(context, payload) {
     context.commit("updateTask", payload);
   },
+  deleteTask(context, payload) {
+    context.commit("removeTask", payload);
+  },
 };

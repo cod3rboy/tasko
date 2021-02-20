@@ -29,6 +29,7 @@
               icon-code="f2ed"
               theme="danger"
               alt-text="Delete Task"
+              @click="deleteTask"
             ></base-round-button>
           </div>
         </div>
@@ -63,6 +64,10 @@ export default {
       const payload = { taskId: this.taskItem.id };
       if (taskFinished) this.$store.dispatch("task/markFinished", payload);
       else this.$store.dispatch("task/markActive", payload);
+    },
+    deleteTask() {
+      const payload = { taskId: this.taskItem.id };
+      this.$store.dispatch("task/deleteTask", payload);
     },
   },
 };
