@@ -1,11 +1,11 @@
 <template>
   <transition-group name="task" tag="ul">
-    <task-list-item
-      v-for="task in tasks"
-      :key="task.id"
-      :task-item="task"
-      @item-click="openTaskItem"
-    ></task-list-item>
+    <li class="task-item" v-for="task in tasks" :key="task.id">
+      <task-list-item
+        :task-item="task"
+        @item-click="openTaskItem"
+      ></task-list-item>
+    </li>
   </transition-group>
 </template>
 
@@ -30,7 +30,10 @@ export default {
 
 <style scoped>
 ul {
-  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-rows: 1fr;
+  grid-gap: 0.25em;
   padding: 0;
   font-size: 1.5rem;
   list-style: none;
@@ -42,15 +45,10 @@ ul {
   opacity: 1;
 }
 .task-leave-active {
-  position: absolute;
-  min-width: 100%;
-  transition: all 400ms ease-out 400ms;
+  transition: all 300ms ease-out 300ms;
 }
 .task-leave-to {
   transform: translateX(-100vw);
   opacity: 0;
-}
-.task-move {
-  transition: transform 400ms ease 400ms;
 }
 </style>

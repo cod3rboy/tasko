@@ -1,41 +1,39 @@
 <template>
-  <li>
-    <base-card padding="0">
-      <div class="flex-container" @click="$emit('item-click', taskItem)">
-        <base-checkbox
-          :checked="taskItem.finished"
-          @check-change="setTaskStatus"
-          @click.stop
-        ></base-checkbox>
-        <div class="detail">
-          <router-link :to="taskDetailLink" custom v-slot="{ navigate, href }">
-            <a
-              class="title"
-              :class="{ strikethrough: taskItem.finished }"
-              :href="href"
-              @click="navigate"
-              >{{ taskItem.title }}</a
-            >
-          </router-link>
-          <div class="date">Due Date : {{ dueDate }}</div>
-          <div class="actions">
-            <base-round-button
-              icon-code="f304"
-              theme="success"
-              alt-text="Edit Task"
-              :link="taskEditLink"
-            ></base-round-button>
-            <base-round-button
-              icon-code="f2ed"
-              theme="danger"
-              alt-text="Delete Task"
-              @click="deleteTask"
-            ></base-round-button>
-          </div>
+  <base-card padding="0">
+    <div class="flex-container" @click="$emit('item-click', taskItem)">
+      <base-checkbox
+        :checked="taskItem.finished"
+        @check-change="setTaskStatus"
+        @click.stop
+      ></base-checkbox>
+      <div class="detail">
+        <router-link :to="taskDetailLink" custom v-slot="{ navigate, href }">
+          <a
+            class="title"
+            :class="{ strikethrough: taskItem.finished }"
+            :href="href"
+            @click="navigate"
+            >{{ taskItem.title }}</a
+          >
+        </router-link>
+        <div class="date">Due Date : {{ dueDate }}</div>
+        <div class="actions">
+          <base-round-button
+            icon-code="f304"
+            theme="success"
+            alt-text="Edit Task"
+            :link="taskEditLink"
+          ></base-round-button>
+          <base-round-button
+            icon-code="f2ed"
+            theme="danger"
+            alt-text="Delete Task"
+            @click="deleteTask"
+          ></base-round-button>
         </div>
       </div>
-    </base-card>
-  </li>
+    </div>
+  </base-card>
 </template>
 
 <script>
