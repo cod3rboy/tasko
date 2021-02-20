@@ -44,5 +44,6 @@ export default {
   max-width: 50%;
   margin: 0 auto;
   height: auto;
+  filter: grayscale(100%);
 }
 </style>

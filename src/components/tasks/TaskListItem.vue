@@ -109,6 +109,8 @@ export default {
 }
 .detail .actions {
   display: flex;
-  gap: 0.5em;
+}
+.detail .actions > *:not(:first-child) {
+  margin-left: 1em;
 }
 </style>

@@ -1,5 +1,9 @@
 <template>
-  <task-list :category-id="categoryId" :tasks="finishedTasks"></task-list>
+  <task-list
+    :category-id="categoryId"
+    :tasks="finishedTasks"
+    empty-message="No tasks are finished yet"
+  ></task-list>
 </template>
 <script>
 import TaskList from "../components/tasks/TaskList.vue";

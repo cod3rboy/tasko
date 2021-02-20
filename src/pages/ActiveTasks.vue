@@ -1,5 +1,9 @@
 <template>
-  <task-list :category-id="categoryId" :tasks="activeTasks"></task-list>
+  <task-list
+    :category-id="categoryId"
+    :tasks="activeTasks"
+    empty-message="No tasks are currently active"
+  ></task-list>
 </template>
 <script>
 import TaskList from "../components/tasks/TaskList.vue";
