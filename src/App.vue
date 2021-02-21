@@ -84,6 +84,8 @@ export default {
   --color-primary-text: #fff;
   --color-accent-text: #fff;
   --color-drawer-text: #666;
+  --color-overlay-background: rgba(0, 0, 0, 0.75);
+  --color-overlay-text: #fff;
   --color-danger: #f33;
   --color-success: #3c3;
   --z-index-fab: 0;

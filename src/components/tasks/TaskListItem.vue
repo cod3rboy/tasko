@@ -1,45 +1,71 @@
 <template>
-  <base-card padding="0">
-    <div class="flex-container" @click="$emit('item-click', taskItem)">
-      <base-checkbox
-        :checked="taskItem.finished"
-        @check-change="setTaskStatus"
-        @click.stop
-      ></base-checkbox>
-      <div class="detail">
-        <router-link :to="taskDetailLink" custom v-slot="{ navigate, href }">
-          <a
-            class="title"
-            :class="{ strikethrough: taskItem.finished }"
-            :href="href"
-            @click="navigate"
-            >{{ taskItem.title }}</a
-          >
-        </router-link>
-        <div class="date">Due Date : {{ dueDate }}</div>
-        <div class="actions">
+  <div class="card-container">
+    <base-card padding="0">
+      <div class="flex-container" @click="$emit('item-click', taskItem)">
+        <base-checkbox
+          :checked="taskItem.finished"
+          @check-change="setTaskStatus"
+          @click.stop
+        ></base-checkbox>
+        <div class="detail">
+          <router-link :to="taskDetailLink" custom v-slot="{ navigate, href }">
+            <a
+              class="title"
+              :class="{ strikethrough: taskItem.finished }"
+              :href="href"
+              @click="navigate"
+              >{{ taskItem.title }}</a
+            >
+          </router-link>
+          <div class="date">Due Date : {{ dueDate }}</div>
+          <div class="actions">
+            <base-round-button
+              icon-code="f304"
+              theme="success"
+              alt-text="Edit Task"
+              :link="taskEditLink"
+            ></base-round-button>
+            <base-round-button
+              icon-code="f2ed"
+              theme="danger"
+              alt-text="Delete Task"
+              @click="setOverlayVisible(true)"
+            ></base-round-button>
+          </div>
+        </div>
+      </div>
+    </base-card>
+    <transition name="overlay">
+      <div class="card-overlay" v-if="deleteConfirmOverlayVisible">
+        <div class="message">Are you sure to delete this task?</div>
+        <div class="overlay-actions">
           <base-round-button
-            icon-code="f304"
-            theme="success"
-            alt-text="Edit Task"
-            :link="taskEditLink"
+            icon-code="f00c"
+            theme="secondary"
+            alt-text="Confirm Delete"
+            @click="deleteTask"
           ></base-round-button>
           <base-round-button
-            icon-code="f2ed"
-            theme="danger"
-            alt-text="Delete Task"
-            @click="deleteTask"
+            icon-code="f00d"
+            theme="secondary"
+            alt-text="Cancel Delete"
+            @click="setOverlayVisible(false)"
           ></base-round-button>
         </div>
       </div>
-    </div>
-  </base-card>
+    </transition>
+  </div>
 </template>
 
 <script>
 export default {
   emits: ["item-click"],
   props: ["taskItem"],
+  data() {
+    return {
+      deleteConfirmOverlayVisible: false,
+    };
+  },
   computed: {
     dueDate() {
       return new Date(this.taskItem.dueDate).toLocaleString();
@@ -67,12 +93,38 @@ export default {
       const payload = { taskId: this.taskItem.id };
       this.$store.dispatch("task/deleteTask", payload);
     },
+    setOverlayVisible(value) {
+      this.deleteConfirmOverlayVisible = value;
+    },
   },
 };
 </script>
 <style scoped>
-.flex-container {
+.card-container {
   position: relative;
+}
+.card-overlay {
+  position: absolute;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: var(--color-overlay-background);
+  color: var(--color-overlay-text);
+  backdrop-filter: blur(6px);
+}
+.card-overlay .message {
+  text-align: center;
+}
+.card-overlay .overlay-actions {
+  display: flex;
+  padding: 0.5em 1em;
+  justify-content: space-around;
+}
+.flex-container {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
@@ -112,5 +164,22 @@ export default {
 }
 .detail .actions > *:not(:first-child) {
   margin-left: 1em;
+}
+/** Overlay Vuejs transition classes */
+.overlay-enter-from,
+.overlay-leave-to {
+  opacity: 0;
+  transform: scaleY(0);
+  transform-origin: top;
+}
+.overlay-enter-active,
+.overlay-leave-active {
+  transition: all 400ms ease;
+}
+.overlay-enter-to,
+.overlay-leave-from {
+  opacity: 1;
+  transform: scaleY(1);
+  transform-origin: top;
 }
 </style>
