@@ -22,10 +22,10 @@
           <i class="fas fa-list-alt"></i> {{ category.name }}
         </router-link>
       </li>
-      <li class="menu-heading">New Category</li>
+      <li class="menu-heading">Settings</li>
       <li class="menu-item-action">
-        <button @click="$emit('new-category')">
-          <i class="fas fa-plus-square"></i> Create New
+        <button @click="$emit('manage-category')">
+          <i class="fas fa-th-list"></i> Manage Categories
         </button>
       </li>
     </ul>
@@ -33,7 +33,7 @@
 </template>
 <script>
 export default {
-  emits: ["close-drawer", "new-category"],
+  emits: ["close-drawer", "manage-category"],
   props: {
     isOpen: {
       type: Boolean,

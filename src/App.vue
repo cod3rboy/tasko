@@ -9,7 +9,7 @@
         :is-open="isDrawerVisible"
         :nav-categories="allCategories"
         @close-drawer="toggleNavMenu"
-        @new-category="setNewCategoryDialogVisible(true)"
+        @manage-category="manageCategories"
       ></the-drawer>
     </section>
     <section class="main">
@@ -18,29 +18,17 @@
           <component :is="Component"></component>
         </transition>
       </router-view>
-      <new-category
-        :show="showNewCategory"
-        @save="saveCategory"
-        @cancel="setNewCategoryDialogVisible(false)"
-      ></new-category>
     </section>
   </div>
 </template>
 <script>
 import TheHeader from "./components/layout/TheHeader.vue";
 import TheDrawer from "./components/layout/TheDrawer.vue";
-import NewCategory from "./components/tasks/NewCategory.vue";
 
 export default {
   components: {
     TheHeader,
-    NewCategory,
     TheDrawer,
-  },
-  data() {
-    return {
-      showNewCategory: false,
-    };
   },
   computed: {
     allCategories() {
@@ -51,21 +39,16 @@ export default {
     },
   },
   methods: {
-    setNewCategoryDialogVisible(visible) {
-      this.showNewCategory = visible;
-    },
-    saveCategory(categoryName) {
-      this.$store.dispatch("category/createCategory", {
-        category: categoryName,
-      });
-      this.setNewCategoryDialogVisible(false);
-    },
     toggleNavMenu() {
       if (this.isDrawerVisible) {
         this.$store.dispatch("hideDrawer");
       } else {
         this.$store.dispatch("showDrawer");
       }
+    },
+    manageCategories() {
+      this.$router.push({ name: "manage-categories" });
+      this.toggleNavMenu();
     },
   },
 };
