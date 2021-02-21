@@ -13,7 +13,11 @@
       ></the-drawer>
     </section>
     <section class="main">
-      <router-view></router-view>
+      <router-view v-slot="{ Component }">
+        <transition name="page" mode="out-in">
+          <component :is="Component"></component>
+        </transition>
+      </router-view>
       <new-category
         :show="showNewCategory"
         @save="saveCategory"
@@ -132,5 +136,24 @@ section.main {
   overflow: hidden;
   grid-row: 2 / 3;
   grid-column: 1 / 2;
+}
+/** Page transition Vuejs css classes */
+.page-enter-from {
+  transform: translateX(-100vw) scale(0.75);
+}
+.page-enter-active {
+  transition: all 400ms ease-in;
+}
+.page-enter-to {
+  transform: scale(1) translateX(0);
+}
+.page-leave-from {
+  transform: scale(1) translateX(0);
+}
+.page-leave-active {
+  transition: all 400ms ease-out;
+}
+.page-leave-to {
+  transform: scale(0.75) translateX(100vw);
 }
 </style>
