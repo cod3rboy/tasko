@@ -1,12 +1,11 @@
 <template>
   <div class="card-container">
     <base-card padding="0">
-      <div class="flex-container" @click="$emit('item-click', taskItem)">
-        <base-checkbox
-          :checked="taskItem.finished"
-          @check-change="setTaskStatus"
-          @click.stop
-        ></base-checkbox>
+      <base-selectable-list-item
+        :is-checked="taskItem.finished"
+        @item-click="$emit('item-click', taskItem)"
+        @selection-change="setTaskStatus"
+      >
         <div class="detail">
           <router-link :to="taskDetailLink" custom v-slot="{ navigate, href }">
             <a
@@ -33,7 +32,7 @@
             ></base-round-button>
           </div>
         </div>
-      </div>
+      </base-selectable-list-item>
     </base-card>
     <transition name="overlay">
       <div class="card-overlay" v-if="deleteConfirmOverlayVisible">
@@ -123,29 +122,6 @@ export default {
   display: flex;
   padding: 0.5em 1em;
   justify-content: space-around;
-}
-.flex-container {
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  gap: 0.2em;
-  padding: 0.5em;
-  cursor: pointer;
-}
-.flex-container:active::after {
-  /* Ripple pseudo element */
-  display: block;
-  content: " ";
-  position: absolute;
-  background-color: rgba(0, 0, 0, 0.05);
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  pointer-events: none;
-}
-.flex-container > .detail {
-  flex: 1 1 auto;
 }
 .detail .title {
   color: var(--color-accent);
