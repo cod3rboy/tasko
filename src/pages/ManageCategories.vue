@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="action-bar">
-      
+      <base-actionbar></base-actionbar>
     </div>
     <div class="list">
       <category-list
