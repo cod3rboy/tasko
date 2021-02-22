@@ -10,6 +10,7 @@ import BaseCheckbox from "./components/ui/BaseCheckbox.vue";
 import BasePage from "./components/ui/BasePage.vue";
 import BaseRoundButton from "./components/ui/BaseRoundButton.vue";
 import BaseSelectableListItem from "./components/ui/BaseSelectableListItem.vue";
+import BaseActionItem from "./components/ui/actionbar/BaseActionItem.vue";
 import BaseActionBar from "./components/ui/actionbar/BaseActionBar.vue";
 
 const app = createApp(App);
@@ -26,6 +27,7 @@ app.component("base-checkbox", BaseCheckbox);
 app.component("base-page", BasePage);
 app.component("base-round-button", BaseRoundButton);
 app.component("base-selectable-list-item", BaseSelectableListItem);
+app.component("base-action-item", BaseActionItem);
 app.component("base-actionbar", BaseActionBar);
 
 app.mount("#app");

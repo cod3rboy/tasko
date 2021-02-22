@@ -1,11 +1,17 @@
 <template>
-  <button class="action-item" :title="altText" :style="styleAttrs">
+  <button
+    class="action-item"
+    :title="altText"
+    :style="styleAttrs"
+    @click="$emit('click')"
+  >
     {{ altText }}
   </button>
 </template>
 
 <script>
 export default {
+  emits: ["click"],
   props: {
     altText: {
       type: String,
@@ -58,6 +64,7 @@ export default {
   position: relative;
   border: none;
   border-radius: 5em;
+  color: var(--foreground-color);
   background-color: var(--background-color);
   padding: 0;
   width: 2.5rem;
@@ -66,13 +73,18 @@ export default {
   outline: none;
   overflow: hidden;
   white-space: nowrap;
+  cursor: pointer;
+}
+.action-item:active {
+  filter: brightness(0.9);
 }
 .action-item::after {
   display: block;
   position: absolute;
   font-family: "Font Awesome 5 Free";
+  font-weight: 900;
   content: var(--icon-code);
-  color: var(--foreground-color);
+  color: inherit;
   top: 0;
   left: 0;
   right: 0;

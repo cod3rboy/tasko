@@ -1,29 +1,28 @@
 <template>
-  <div class="actions">
-    <base-action-item
-      icon-code="f2ed"
-      alt-text="Delete Category"
-      background-color="var(--color-accent-text)"
-      foreground-color="var(--color-accent)"
-    ></base-action-item>
+  <div class="action-bar">
+    <div class="action-text">
+      <slot name="action-text"></slot>
+    </div>
+    <div class="action-items">
+      <slot name="action-items"></slot>
+    </div>
   </div>
 </template>
 
-<script>
-import BaseActionItem from "./BaseActionItem.vue";
-export default {
-  components: {
-    BaseActionItem,
-  },
-};
-</script>
-
 <style scoped>
-.actions {
+.action-bar {
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-evenly;
   background-color: var(--color-accent);
-  padding: 0.4rem;
+  color: var(--color-accent-text);
+  padding: 0.5rem 1rem;
+}
+.action-bar > .action-text {
+  flex: 1 1 auto;
+  font-size: 1.5rem;
+  align-self: center;
+}
+.action-items > *:not(:first-child) {
+  margin-left: 0.6rem;
 }
 </style>

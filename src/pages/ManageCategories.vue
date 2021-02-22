@@ -1,8 +1,6 @@
 <template>
   <div class="container">
-    <div class="action-bar">
-      <base-actionbar></base-actionbar>
-    </div>
+    <category-action-bar></category-action-bar>
     <div class="list">
       <category-list
         :categories="categories"
@@ -15,10 +13,12 @@
 
 <script>
 import CategoryList from "../components/category/CategoryList.vue";
+import CategoryActionBar from "../components/category/CategoryActionBar.vue";
 
 export default {
   components: {
     CategoryList,
+    CategoryActionBar,
   },
   data() {
     return {
