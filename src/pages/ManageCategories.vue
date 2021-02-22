@@ -1,17 +1,17 @@
 <template>
-  <ul>
-    <li class="category-item" v-for="category in categories" :key="category.id">
-      <category-list-item :category="category"></category-list-item>
-    </li>
-  </ul>
+  <category-list
+    :categories="categories"
+    @category-selected="addCategoryToSelection"
+    @category-deselected="removeCategoryFromSelection"
+  ></category-list>
 </template>
 
 <script>
-import CategoryListItem from "../components/category/CategoryListItem.vue";
+import CategoryList from "../components/category/CategoryList.vue";
 
 export default {
   components: {
-    CategoryListItem,
+    CategoryList,
   },
   data() {
     return {
@@ -23,24 +23,16 @@ export default {
       return this.$store.getters["category/categories"];
     },
   },
+  methods: {
+    addCategoryToSelection(category) {
+      this.selectedItems.push(category.id);
+      console.log(this.selectedItems);
+    },
+    removeCategoryFromSelection(category) {
+      const index = this.selectedItems.find((c) => c.id === category.id);
+      this.selectedItems.splice(index, 1);
+      console.log(this.selectedItems);
+    },
+  },
 };
 </script>
-
-<style scoped>
-ul {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-auto-rows: 1fr;
-  grid-gap: 0.6em;
-  list-style: none;
-  font-size: 1.5rem;
-  padding: 0;
-  margin: 0;
-  max-height: 100%;
-  overflow: hidden auto;
-}
-.category-item {
-  position: relative;
-  margin: 0 0.5em;
-}
-</style>
