@@ -1,6 +1,13 @@
 <template>
   <div class="container">
-    <category-action-bar></category-action-bar>
+    <transition name="actionbar">
+      <category-action-bar
+        :select-count="selectedItemsCount"
+        @edit="editSelectedItem"
+        @delete="deleteSelectedItems"
+        v-if="shouldShowActionBar"
+      ></category-action-bar>
+    </transition>
     <div class="list">
       <category-list
         :categories="categories"
@@ -29,17 +36,23 @@ export default {
     categories() {
       return this.$store.getters["category/categories"];
     },
+    selectedItemsCount() {
+      return this.selectedItems.length;
+    },
+    shouldShowActionBar() {
+      return this.selectedItems.length > 0;
+    },
   },
   methods: {
     addCategoryToSelection(category) {
       this.selectedItems.push(category.id);
-      console.log(this.selectedItems);
     },
     removeCategoryFromSelection(category) {
       const index = this.selectedItems.find((c) => c.id === category.id);
       this.selectedItems.splice(index, 1);
-      console.log(this.selectedItems);
     },
+    editSelectedItem() {},
+    deleteSelectedItems() {},
   },
 };
 </script>
@@ -54,5 +67,22 @@ export default {
 .list {
   padding: 1rem;
   overflow: hidden auto;
+}
+/* Vuejs transitions classes for actionbar */
+.actionbar-enter-from,
+.actionbar-leave-to {
+  transform: scaleY(0);
+  transform-origin: top;
+  opacity: 0;
+}
+.actionbar-enter-active,
+.actionbar-leave-active {
+  transition: all 300ms ease;
+}
+.actionbar-enter-to,
+.actionbar-leave-from {
+  transform: scaleY(1);
+  transform-origin: top;
+  opacity: 1;
 }
 </style>
