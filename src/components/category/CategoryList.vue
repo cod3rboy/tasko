@@ -36,19 +36,15 @@ export default {
 </script>
 <style scoped>
 ul {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-auto-rows: 1fr;
-  grid-gap: 0.6em;
   list-style: none;
   font-size: 1.5rem;
   padding: 0;
   margin: 0;
-  max-height: 100%;
-  overflow: hidden auto;
 }
 .category-item {
   position: relative;
-  margin: 0 0.5em;
+}
+.category-item:not(:last-child) {
+  margin-bottom: 0.5em;
 }
 </style>

@@ -1,9 +1,16 @@
 <template>
-  <category-list
-    :categories="categories"
-    @category-selected="addCategoryToSelection"
-    @category-deselected="removeCategoryFromSelection"
-  ></category-list>
+  <div class="container">
+    <div class="action-bar">
+      
+    </div>
+    <div class="list">
+      <category-list
+        :categories="categories"
+        @category-selected="addCategoryToSelection"
+        @category-deselected="removeCategoryFromSelection"
+      ></category-list>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -36,3 +43,16 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.container {
+  display: grid;
+  height: 100%;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
+}
+.list {
+  padding: 1rem;
+  overflow: hidden auto;
+}
+</style>
