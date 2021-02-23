@@ -69,6 +69,7 @@ dialog {
   height: 2em;
   overflow: hidden;
   text-indent: 5em;
+  outline: none;
 }
 .close::after {
   position: absolute;
@@ -97,12 +98,10 @@ dialog {
 }
 .main .actions {
   display: flex;
-  flex-wrap: wrap;
+  flex-flow: row nowrap;
   justify-content: space-between;
 }
-.actions > * {
-  margin: 0 auto;
-}
+
 /* Vue transition CSS classes */
 .v-enter-from,
 .v-leave-to {

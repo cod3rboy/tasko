@@ -23,22 +23,32 @@
       icon-code="f067"
       alt-text="Create new category"
       :visible="!shouldShowActionBar"
+      @click="openDialog"
     ></base-float-button>
+    <category-dialog
+      :show="showDialog"
+      :category="categoryToEdit"
+      @save="saveCategory"
+      @dismiss="closeDialog"
+    ></category-dialog>
   </div>
 </template>
 
 <script>
 import CategoryList from "../components/category/CategoryList.vue";
 import CategoryActionBar from "../components/category/CategoryActionBar.vue";
+import CategoryDialog from "../components/category/CategoryDialog.vue";
 
 export default {
   components: {
     CategoryList,
     CategoryActionBar,
+    CategoryDialog,
   },
   data() {
     return {
       selectedItems: [],
+      showDialog: false,
     };
   },
   computed: {
@@ -50,6 +60,12 @@ export default {
     },
     shouldShowActionBar() {
       return this.selectedItems.length > 0;
+    },
+    categoryToEdit() {
+      if (this.selectedItemsCount === 1) {
+        const categoryId = this.selectedItems[0];
+        return this.categories.find((c) => c.id === categoryId);
+      }
     },
   },
   methods: {
@@ -72,7 +88,9 @@ export default {
         this.selectedItems.push(category.id);
       }
     },
-    editSelectedItem() {},
+    editSelectedItem() {
+      this.openDialog();
+    },
     deleteSelectedItems() {
       for (let catId of this.selectedItems) {
         this.$store.dispatch("category/deleteCategory", { categoryId: catId });
@@ -86,6 +104,24 @@ export default {
     },
     cancelSelection() {
       this.selectedItems.length = 0;
+    },
+    openDialog() {
+      this.showDialog = true;
+    },
+    closeDialog() {
+      this.showDialog = false;
+      this.cancelSelection();
+    },
+    saveCategory(category) {
+      if (!!category.id) {
+        this.$store.dispatch("category/saveCategory", category);
+      } else {
+        this.$store.dispatch("category/createCategory", {
+          category: category.name,
+        });
+      }
+      this.closeDialog();
+      this.cancelSelection();
     },
   },
 };

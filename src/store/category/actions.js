@@ -8,4 +8,10 @@ export default {
   deleteCategory(context, payload) {
     context.commit("removeCategory", payload);
   },
+  saveCategory(context, payload) {
+    context.commit("saveCategory", {
+      categoryId: payload.id,
+      categoryName: payload.name,
+    });
+  },
 };

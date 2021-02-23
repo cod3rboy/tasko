@@ -43,9 +43,10 @@ export default {
   padding: 0.5em 1em;
   font-size: 1.2rem;
   border-radius: 0.25em;
-  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
   transition: all 0.3s ease-in;
   text-transform: uppercase;
+  outline: none;
 }
 .btn--primary {
   background-color: var(--color-primary);
