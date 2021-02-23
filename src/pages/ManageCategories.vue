@@ -19,6 +19,11 @@
         @category-clicked="toggleCategorySelection"
       ></category-list>
     </div>
+    <base-float-button
+      icon-code="f067"
+      alt-text="Create new category"
+      :visible="!shouldShowActionBar"
+    ></base-float-button>
   </div>
 </template>
 

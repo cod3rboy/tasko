@@ -1,6 +1,6 @@
 <template>
   <base-actionbar>
-    <template #action-text>{{ selectCount }} items selected</template>
+    <template #action-text>{{ actionText }}</template>
     <template #action-items>
       <base-action-item
         icon-code="f304"
@@ -41,6 +41,13 @@ export default {
   computed: {
     showEditAction() {
       return this.selectCount === 1;
+    },
+    actionText() {
+      const segments = [];
+      segments.push(this.selectCount);
+      segments.push(this.selectCount > 1 ? "categories" : "category");
+      segments.push("selected");
+      return segments.join(" ");
     },
   },
   methods: {
