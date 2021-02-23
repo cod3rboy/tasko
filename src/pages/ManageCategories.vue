@@ -13,6 +13,7 @@
         :categories="categories"
         @category-selected="addCategoryToSelection"
         @category-deselected="removeCategoryFromSelection"
+        @category-clicked="toggleCategorySelection"
       ></category-list>
     </div>
   </div>
@@ -48,8 +49,22 @@ export default {
       this.selectedItems.push(category.id);
     },
     removeCategoryFromSelection(category) {
-      const index = this.selectedItems.find((c) => c.id === category.id);
+      const index = this.selectedItems.findIndex(
+        (catId) => catId === category.id
+      );
       this.selectedItems.splice(index, 1);
+    },
+    toggleCategorySelection(category) {
+      const index = this.selectedItems.findIndex(
+        (catId) => catId === category.id
+      );
+      console.log("Index : " + index);
+      if (index >= 0) {
+        this.selectedItems.splice(index, 1);
+      } else {
+        this.selectedItems.push(category.id);
+      }
+      console.log(this.selectedItems);
     },
     editSelectedItem() {},
     deleteSelectedItems() {},

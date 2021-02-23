@@ -18,6 +18,14 @@
         @click="actionDelete"
       ></base-action-item>
     </template>
+    <ul class="actionbar__bottom">
+      <li class="bottom-item">
+        <button>Select all</button>
+      </li>
+      <li class="bottom-item">
+        <button>Cancel</button>
+      </li>
+    </ul>
   </base-actionbar>
 </template>
 
@@ -45,3 +53,30 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.actionbar__bottom {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-content: center;
+  margin: 0;
+  list-style-type: none;
+  padding: 0;
+  background-color: var(--color-secondary-surface);
+  color: var(--color-accent);
+}
+.actionbar__bottom .bottom-item > button {
+  border: none;
+  background-color: transparent;
+  font-size: 1.5rem;
+  outline: none;
+  color: var(--color-accent);
+  cursor: pointer;
+  padding: 0.8rem 1rem;
+}
+.actionbar__bottom .bottom-item > button:active {
+  background-color: rgba(0, 0, 0, 0.10);
+  border-radius: 10em;
+}
+</style>

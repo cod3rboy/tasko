@@ -5,6 +5,7 @@
         :category="category"
         @item-selected="itemSelected"
         @item-deselected="itemDeselected"
+        @item-click="itemClicked"
       ></category-list-item>
     </li>
   </ul>
@@ -13,7 +14,7 @@
 <script>
 import CategoryListItem from "./CategoryListItem.vue";
 export default {
-  emits: ["category-selected", "category-deselected"],
+  emits: ["category-selected", "category-deselected", "category-clicked"],
   components: {
     CategoryListItem,
   },
@@ -30,6 +31,9 @@ export default {
     },
     itemDeselected(category) {
       this.$emit("category-deselected", category);
+    },
+    itemClicked(category) {
+      this.$emit("category-clicked", category);
     },
   },
 };

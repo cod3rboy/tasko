@@ -67,6 +67,7 @@ export default {
   color: var(--foreground-color);
   background-color: var(--background-color);
   padding: 0;
+  margin: 0 0.4rem;
   width: 2.5rem;
   height: 2.5rem;
   text-indent: 10em;

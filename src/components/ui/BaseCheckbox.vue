@@ -56,6 +56,11 @@ export default {
       );
     },
   },
+  watch: {
+    checked() {
+      this.checkState = this.checked;
+    },
+  },
   methods: {
     checkChanged() {
       this.$emit("check-change", this.checkState);

@@ -1,7 +1,7 @@
 <template>
-  <div class="flex-container" @click="$emit('item-click')">
+  <div class="flex-container" @click="itemClicked">
     <base-checkbox
-      :checked="isChecked"
+      :checked="itemChecked"
       @check-change="checkChanged"
       @click.stop
     ></base-checkbox>
@@ -21,9 +21,19 @@ export default {
       default: false,
     },
   },
+  data() {
+    return {
+      itemChecked: this.isChecked,
+    };
+  },
   methods: {
-    checkChanged(isChecked) {
-      this.$emit("selection-change", isChecked);
+    checkChanged(checked) {
+      this.itemChecked = checked;
+      this.$emit("selection-change", this.itemChecked);
+    },
+    itemClicked() {
+      this.itemChecked = !this.itemChecked;
+      this.$emit("item-click");
     },
   },
 };

@@ -25,7 +25,4 @@
   font-size: 1.5rem;
   align-self: center;
 }
-.action-bar__content .action-items > *:not(:first-child) {
-  margin-left: 0.6rem;
-}
 </style>
