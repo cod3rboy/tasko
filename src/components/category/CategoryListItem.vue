@@ -1,6 +1,7 @@
 <template>
   <base-card>
     <base-selectable-list-item
+      :is-checked="selected"
       @selection-change="selectionChange"
       @item-click="itemClicked"
     >
@@ -17,6 +18,11 @@ export default {
       type: Object,
       required: true,
       default: null,
+    },
+    selected: {
+      type: Boolean,
+      required: false,
+      default: false,
     },
   },
   methods: {

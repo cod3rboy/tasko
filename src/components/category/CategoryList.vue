@@ -3,6 +3,7 @@
     <li class="category-item" v-for="category in categories" :key="category.id">
       <category-list-item
         :category="category"
+        :selected="selectedCategories.includes(category.id)"
         @item-selected="itemSelected"
         @item-deselected="itemDeselected"
         @item-click="itemClicked"
@@ -20,6 +21,11 @@ export default {
   },
   props: {
     categories: {
+      type: Array,
+      required: true,
+      default: [],
+    },
+    selectedCategories: {
       type: Array,
       required: true,
       default: [],

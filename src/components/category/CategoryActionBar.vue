@@ -20,10 +20,10 @@
     </template>
     <ul class="actionbar__bottom">
       <li class="bottom-item">
-        <button>Select all</button>
+        <button @click="$emit('select-all')">Select all</button>
       </li>
       <li class="bottom-item">
-        <button>Cancel</button>
+        <button @click="$emit('cancel')">Cancel</button>
       </li>
     </ul>
   </base-actionbar>
@@ -31,7 +31,7 @@
 
 <script>
 export default {
-  emits: ["edit", "delete"],
+  emits: ["edit", "delete", "select-all", "cancel"],
   props: {
     selectCount: {
       type: Number,
@@ -76,7 +76,7 @@ export default {
   padding: 0.8rem 1rem;
 }
 .actionbar__bottom .bottom-item > button:active {
-  background-color: rgba(0, 0, 0, 0.10);
+  background-color: rgba(0, 0, 0, 0.1);
   border-radius: 10em;
 }
 </style>

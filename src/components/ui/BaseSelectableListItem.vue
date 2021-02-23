@@ -26,6 +26,11 @@ export default {
       itemChecked: this.isChecked,
     };
   },
+  watch: {
+    isChecked() {
+      this.itemChecked = this.isChecked;
+    },
+  },
   methods: {
     checkChanged(checked) {
       this.itemChecked = checked;

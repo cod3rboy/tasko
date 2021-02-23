@@ -5,12 +5,15 @@
         :select-count="selectedItemsCount"
         @edit="editSelectedItem"
         @delete="deleteSelectedItems"
+        @select-all="selectAllItems"
+        @cancel="cancelSelection"
         v-if="shouldShowActionBar"
       ></category-action-bar>
     </transition>
     <div class="list">
       <category-list
         :categories="categories"
+        :selected-categories="selectedItems"
         @category-selected="addCategoryToSelection"
         @category-deselected="removeCategoryFromSelection"
         @category-clicked="toggleCategorySelection"
@@ -58,16 +61,27 @@ export default {
       const index = this.selectedItems.findIndex(
         (catId) => catId === category.id
       );
-      console.log("Index : " + index);
       if (index >= 0) {
         this.selectedItems.splice(index, 1);
       } else {
         this.selectedItems.push(category.id);
       }
-      console.log(this.selectedItems);
     },
     editSelectedItem() {},
-    deleteSelectedItems() {},
+    deleteSelectedItems() {
+      for (let catId of this.selectedItems) {
+        this.$store.dispatch("category/deleteCategory", { categoryId: catId });
+      }
+      this.selectedItems.length = 0;
+    },
+    selectAllItems() {
+      this.selectedItems.length = 0;
+      for (let category of this.categories)
+        this.selectedItems.push(category.id);
+    },
+    cancelSelection() {
+      this.selectedItems.length = 0;
+    },
   },
 };
 </script>

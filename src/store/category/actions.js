@@ -5,4 +5,7 @@ export default {
       name: payload.category,
     });
   },
+  deleteCategory(context, payload) {
+    context.commit("removeCategory", payload);
+  },
 };
