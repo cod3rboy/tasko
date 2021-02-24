@@ -17,6 +17,8 @@
         @category-selected="addCategoryToSelection"
         @category-deselected="removeCategoryFromSelection"
         @category-clicked="toggleCategorySelection"
+        @move-category-up="moveCategoryUp"
+        @move-category-down="moveCategoryDown"
       ></category-list>
     </div>
     <base-float-button
@@ -122,6 +124,22 @@ export default {
       }
       this.closeDialog();
       this.cancelSelection();
+    },
+    moveCategoryUp(category) {
+      const index = this.categories.findIndex((c) => c.id === category.id);
+      if (index >= 0) {
+        this.$store.dispatch("category/moveCategoryUp", {
+          categoryIndex: index,
+        });
+      }
+    },
+    moveCategoryDown(category) {
+      const index = this.categories.findIndex((c) => c.id === category.id);
+      if (index >= 0) {
+        this.$store.dispatch("category/moveCategoryDown", {
+          categoryIndex: index,
+        });
+      }
     },
   },
 };

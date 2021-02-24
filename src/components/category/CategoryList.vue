@@ -4,9 +4,12 @@
       <category-list-item
         :category="category"
         :selected="selectedCategories.includes(category.id)"
+        :show-move-actions="shouldShowItemMoveActions"
         @item-selected="itemSelected"
         @item-deselected="itemDeselected"
         @item-click="itemClicked"
+        @item-move-up="moveItemUp"
+        @item-move-down="moveItemDown"
       ></category-list-item>
     </li>
   </ul>
@@ -15,7 +18,13 @@
 <script>
 import CategoryListItem from "./CategoryListItem.vue";
 export default {
-  emits: ["category-selected", "category-deselected", "category-clicked"],
+  emits: [
+    "category-selected",
+    "category-deselected",
+    "category-clicked",
+    "move-category-up",
+    "move-category-down",
+  ],
   components: {
     CategoryListItem,
   },
@@ -31,6 +40,11 @@ export default {
       default: [],
     },
   },
+  computed: {
+    shouldShowItemMoveActions() {
+      return this.selectedCategories.length > 0;
+    },
+  },
   methods: {
     itemSelected(category) {
       this.$emit("category-selected", category);
@@ -40,6 +54,12 @@ export default {
     },
     itemClicked(category) {
       this.$emit("category-clicked", category);
+    },
+    moveItemUp(category) {
+      this.$emit("move-category-up", category);
+    },
+    moveItemDown(category) {
+      this.$emit("move-category-down", category);
     },
   },
 };

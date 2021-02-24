@@ -14,4 +14,19 @@ export default {
       categoryName: payload.name,
     });
   },
+  moveCategoryUp(context, payload) {
+    context.commit("moveCategory", {
+      oldIndex: payload.categoryIndex,
+      newIndex: Math.max(0, payload.categoryIndex - 1),
+    });
+  },
+  moveCategoryDown(context, payload) {
+    context.commit("moveCategory", {
+      oldIndex: payload.categoryIndex,
+      newIndex: Math.min(
+        payload.categoryIndex + 1,
+        context.getters.categories.length - 1
+      ),
+    });
+  },
 };

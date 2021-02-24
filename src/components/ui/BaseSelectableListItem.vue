@@ -8,6 +8,7 @@
     <div class="content">
       <slot></slot>
     </div>
+    <slot name="actions"></slot>
   </div>
 </template>
 
