@@ -5,7 +5,7 @@
       <base-button @click="saveCategory">Save</base-button>
       <base-button @click="dismiss" look="secondary">Cancel</base-button>
     </template>
-    <form>
+    <form @submit.prevent="saveCategory">
       <div class="form-control">
         <label for="category">Category Name</label>
         <input type="text" id="category" v-model.trim="categoryName" />
@@ -37,6 +37,8 @@ export default {
       if (!!newValue) {
         this.categoryName = newValue.name;
         this.categoryId = newValue.id;
+      } else {
+        this.reset();
       }
     },
   },
