@@ -8,6 +8,8 @@ import TaskDetail from "./pages/TaskDetail.vue";
 import EditTask from "./pages/EditTask.vue";
 import NotFound from "./pages/NotFound.vue";
 import ManageCategories from "./pages/ManageCategories.vue";
+import Login from "./pages/Login.vue";
+import Signup from "./pages/Signup.vue";
 import store from "./store/index.js";
 
 function verifyCategoryNavigation(to, _, next) {
@@ -32,6 +34,16 @@ function verifyTaskNavigation(to, _, next) {
 const router = createRouter({
   history: createWebHistory(),
   routes: [
+    {
+      path: "/login",
+      component: Login,
+      name: "login",
+    },
+    {
+      path: "/signup",
+      component: Signup,
+      name: "signup",
+    },
     {
       path: "/categories/manage",
       component: ManageCategories,
