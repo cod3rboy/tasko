@@ -1,7 +1,7 @@
 <template>
   <div class="form-control" :class="{ invalid: hasError }">
-    <slot name="label"></slot>
-    <slot name="control"></slot>
+    <label :for="controlId">{{ label }}</label>
+    <slot></slot>
     <p class="invalid-message" v-if="hasError">{{ invalidMessage }}</p>
   </div>
 </template>
@@ -18,6 +18,14 @@ export default {
       type: String,
       required: true,
       default: "Invalid value",
+    },
+    label: {
+      type: String,
+      required: true,
+    },
+    controlId: {
+      type: String,
+      required: true,
     },
   },
 };
