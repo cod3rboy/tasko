@@ -4,13 +4,14 @@
       <base-form-control
         label="Email Address"
         control-id="useremail"
-        :has-error="false"
-        invalid-message="Invalid Email"
+        :has-error="!emailValidation.isValid"
+        :invalid-message="emailValidation.invalidMessage"
       >
         <input
           type="email"
           id="useremail"
           v-model.trim="userEmail"
+          @blur="tryValidateEmail"
           autocomplete="false"
         />
       </base-form-control>
@@ -18,13 +19,14 @@
       <base-form-control
         label="Password"
         control-id="userpassword"
-        :has-error="false"
-        invalid-message="Invalid Password"
+        :has-error="!pwdValidation.isValid"
+        :invalid-message="pwdValidation.invalidMessage"
       >
         <input
           type="password"
           id="userpassword"
           v-model.trim="userPassword"
+          @blur="tryValidatePassword"
           autocomplete="false"
         />
       </base-form-control>
@@ -35,14 +37,38 @@
 
 <script>
 export default {
+    // TODO : Use email regex for validation
   data() {
     return {
       userEmail: "",
       userPassword: "",
+      emailValidation: {
+        isValid: true,
+        invalidMessage: "Please enter a valid email address",
+      },
+      pwdValidation: {
+        isValid: true,
+        invalidMessage: "Password must be atleast six characters long",
+      },
     };
   },
   methods: {
+    tryValidateEmail() {
+      this.emailValidation.isValid = this.userEmail.indexOf("@") > 0;
+    },
+    tryValidatePassword() {
+      this.pwdValidation.isValid = this.userPassword.length >= 6;
+    },
+    validateData() {
+      this.tryValidateEmail();
+      this.tryValidatePassword();
+      if (!this.emailValidation.isValid || !this.pwdValidation.isValid)
+        return false;
+      return true;
+    },
     login() {
+      if (!this.validateData()) return;
+      // Log in the user
       console.log("Logged IN");
     },
   },
