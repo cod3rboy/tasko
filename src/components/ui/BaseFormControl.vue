@@ -36,6 +36,8 @@ export default {
   font-size: 1.5rem;
   display: flex;
   flex-flow: column nowrap;
+}
+.form-control:not(:first-child) {
   margin: 1em 0;
 }
 .form-control > *:not(:first-child) {

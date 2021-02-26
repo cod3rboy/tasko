@@ -1,6 +1,6 @@
 <template>
   <base-page title="Start using TASKO" subtitle="Login with your credentials">
-    <form @submit.prevent="login">
+    <base-form @submit.prevent="login">
       <base-form-control
         label="Email Address"
         control-id="useremail"
@@ -31,13 +31,16 @@
         />
       </base-form-control>
       <base-button look="accent">Log in</base-button>
-    </form>
+      <base-button look="secondary" :link="{ name: 'signup' }" margin="1rem 0 0 0">
+        Don&apos;t have an account?
+      </base-button>
+    </base-form>
   </base-page>
 </template>
 
 <script>
 export default {
-    // TODO : Use email regex for validation
+  // TODO : Use email regex for validation
   data() {
     return {
       userEmail: "",

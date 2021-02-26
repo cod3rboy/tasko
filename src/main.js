@@ -12,6 +12,7 @@ import BaseRoundButton from "./components/ui/BaseRoundButton.vue";
 import BaseSelectableListItem from "./components/ui/BaseSelectableListItem.vue";
 import BaseActionItem from "./components/ui/actionbar/BaseActionItem.vue";
 import BaseActionBar from "./components/ui/actionbar/BaseActionBar.vue";
+import BaseForm from "./components/ui/BaseForm.vue";
 import BaseFormControl from "./components/ui/BaseFormControl.vue";
 
 const app = createApp(App);
@@ -30,6 +31,7 @@ app.component("base-round-button", BaseRoundButton);
 app.component("base-selectable-list-item", BaseSelectableListItem);
 app.component("base-action-item", BaseActionItem);
 app.component("base-actionbar", BaseActionBar);
+app.component("base-form", BaseForm);
 app.component("base-form-control", BaseFormControl);
 
 app.mount("#app");

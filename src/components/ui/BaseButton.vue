@@ -1,5 +1,16 @@
 <template>
-  <button class="btn" :class="styleModifier">
+  <router-link :to="link" custom v-slot="{ navigate, href }" v-if="hasLink">
+    <a
+      class="btn"
+      :class="styleModifier"
+      :style="inlineStyles"
+      :href="href"
+      @click="navigate"
+    >
+      <slot></slot>
+    </a>
+  </router-link>
+  <button class="btn" :class="styleModifier" :style="inlineStyles" v-else>
     <slot></slot>
   </button>
 </template>
@@ -8,7 +19,7 @@
 const btnStyleModifiers = {
   primary: "btn--primary",
   accent: "btn--accent",
-  secondary: "",
+  secondary: "btn--secondary",
 };
 export default {
   props: {
@@ -21,10 +32,28 @@ export default {
         return btnModifier in btnStyleModifiers;
       },
     },
+    link: {
+      type: Object,
+      required: false,
+      default: null,
+    },
+    margin: {
+      type: String,
+      required: false,
+      default: "0 0 0 0",
+    },
   },
   computed: {
     styleModifier() {
       return this.styleModifiers[this.look];
+    },
+    hasLink() {
+      return !!this.link && typeof this.link === "object";
+    },
+    inlineStyles() {
+      return {
+        margin: this.margin,
+      };
     },
   },
   data() {
@@ -46,6 +75,8 @@ export default {
   box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
   transition: all 0.3s ease-in;
   text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
   outline: none;
 }
 .btn--primary {
@@ -55,6 +86,10 @@ export default {
 .btn--accent {
   background-color: var(--color-accent);
   color: var(--color-accent-text);
+}
+.btn--secondary {
+  background-color: var(--color-secondary-surface);
+  color: var(--color-accent);
 }
 .btn:hover {
   filter: brightness(1.1);
