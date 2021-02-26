@@ -1,38 +1,46 @@
 <template>
   <form @submit.prevent="submitData">
-    <div class="form-control" :class="{ invalid: !titleValidation.isValid }">
-      <label for="tasktitle">Task Title</label>
-      <input
-        type="text"
-        id="tasktitle"
-        v-model.trim="taskTitle"
-        @blur="tryValidateTitle"
-      />
-      <p class="invalid-message" v-if="!titleValidation.isValid">
-        {{ titleValidation.invalidMessage }}
-      </p>
-    </div>
-    <div class="form-control">
-      <label for="taskdesc">Task Description</label>
-      <textarea
-        id="taskdesc"
-        rows="4"
-        v-model.trim="taskDesc"
-        placeholder="(Optional)"
-      ></textarea>
-    </div>
-    <div class="form-control" :class="{ invalid: !dateValidation.isValid }">
-      <label for="duedate">Due Date</label>
-      <input
-        type="datetime-local"
-        id="duedate"
-        v-model.trim="taskDueDate"
-        @blur="tryValidateDate"
-      />
-      <p class="invalid-message" v-if="!dateValidation.isValid">
-        {{ dateValidation.invalidMessage }}
-      </p>
-    </div>
+    <base-form-control
+      :has-error="!titleValidation.isValid"
+      :invalid-message="titleValidation.invalidMessage"
+    >
+      <template #label><label for="tasktitle">Task Title</label></template>
+      <template #control>
+        <input
+          type="text"
+          id="tasktitle"
+          v-model.trim="taskTitle"
+          @blur="tryValidateTitle"
+        />
+      </template>
+    </base-form-control>
+
+    <base-form-control>
+      <template #label><label for="taskdesc">Task Description</label></template>
+      <template #control>
+        <textarea
+          id="taskdesc"
+          rows="4"
+          v-model.trim="taskDesc"
+          placeholder="(Optional)"
+        ></textarea>
+      </template>
+    </base-form-control>
+
+    <base-form-control
+      :has-error="!dateValidation.isValid"
+      :invalid-message="dateValidation.invalidMessage"
+    >
+      <template #label><label for="duedate">Due Date</label></template>
+      <template #control>
+        <input
+          type="datetime-local"
+          id="duedate"
+          v-model.trim="taskDueDate"
+          @blur="tryValidateDate"
+        />
+      </template>
+    </base-form-control>
     <base-float-button
       alt-text="Save Task"
       icon-code="f0c7"
@@ -41,7 +49,9 @@
 </template>
 
 <script>
+import BaseFormControl from "../ui/BaseFormControl.vue";
 export default {
+  components: { BaseFormControl },
   props: {
     initialData: {
       type: Object,
