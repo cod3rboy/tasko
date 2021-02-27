@@ -43,8 +43,8 @@ export default {
     },
   },
   data() {
-    const categoryName = "";
-    const categoryId = null;
+    let categoryName = "";
+    let categoryId = null;
     if (!!this.category) {
       categoryName = this.category.name;
       categoryId = this.category.id;
