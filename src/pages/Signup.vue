@@ -130,8 +130,12 @@ export default {
     },
     signup() {
       if (!this.validateData()) return;
-      // Sign up the user
-      console.log("Signed Up");
+      // create user account
+      this.$store.dispatch("account/signup", {
+        fullName: this.userFullName,
+        email: this.userEmail,
+        password: this.confirmPassword,
+      });
     },
   },
 };
