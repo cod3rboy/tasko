@@ -38,7 +38,7 @@ export default {
   flex-flow: column nowrap;
 }
 .form-control:not(:first-child) {
-  margin: 1em 0;
+  margin: 1em 0 0 0;
 }
 .form-control > *:not(:first-child) {
   margin-top: 0.25em;

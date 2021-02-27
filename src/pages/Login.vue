@@ -30,8 +30,12 @@
           autocomplete="false"
         />
       </base-form-control>
-      <base-button look="accent">Log in</base-button>
-      <base-button look="secondary" :link="{ name: 'signup' }" margin="1rem 0 0 0">
+      <base-button look="accent" margin="1rem 0 0 0">Log in</base-button>
+      <base-button
+        look="secondary"
+        :link="{ name: 'signup' }"
+        margin="1rem 0 0 0"
+      >
         Don&apos;t have an account?
       </base-button>
     </base-form>
