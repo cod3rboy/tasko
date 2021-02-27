@@ -1,9 +1,11 @@
 import { createStore } from "vuex";
+import account from "./account/index.js";
 import category from "./category/index.js";
 import task from "./task/index.js";
 
 const store = createStore({
   modules: {
+    account,
     category,
     task,
   },
