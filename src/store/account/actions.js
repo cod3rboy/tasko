@@ -11,4 +11,15 @@ export default {
     );
     await credential.user.updateProfile({ displayName: fullName });
   },
+  async login(_, payload) {
+    const { email, password } = payload;
+    // Login the user
+    const auth = firebase.auth();
+    await auth.signInWithEmailAndPassword(email, password);
+  },
+  async logout() {
+    // Logout the user
+    const auth = firebase.auth();
+    await auth.signOut();
+  },
 };
