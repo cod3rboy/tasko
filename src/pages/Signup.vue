@@ -73,7 +73,15 @@
       </base-button>
     </base-form>
 
-    <base-loading-overlay></base-loading-overlay>
+    <base-loading-overlay
+      v-if="isLoading"
+      message="Signing up"
+    ></base-loading-overlay>
+
+    <base-dialog :show="hasError" @dialog-close="clearError">
+      <template #header>Signup failed</template>
+      <p>{{ error }}</p>
+    </base-dialog>
   </base-page>
 </template>
 
@@ -103,7 +111,13 @@ export default {
         invalidMessage: "Passwords do not match",
       },
       isLoading: false,
+      error: null,
     };
+  },
+  computed: {
+    hasError() {
+      return !!this.error;
+    },
   },
   methods: {
     tryValidateFullName() {
@@ -131,6 +145,12 @@ export default {
         this.confirmPwdValidation.isValid
       );
     },
+    clearError() {
+      this.error = null;
+    },
+    setError(errorMessage) {
+      this.error = errorMessage;
+    },
     async signup() {
       if (!this.validateData()) return;
       this.isLoading = true;
@@ -144,7 +164,7 @@ export default {
         // Redirect to homepage
         this.$router.replace({ name: "home" });
       } catch (error) {
-        console.log(error);
+        this.setError(error.message);
       }
       this.isLoading = false;
     },
