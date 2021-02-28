@@ -78,6 +78,7 @@ export default {
   --z-index-fab: 0;
   --z-index-drawer: 1;
   --z-index-dialog: 2;
+  --z-index-loading-overlay: 3;
 }
 * {
   box-sizing: border-box;

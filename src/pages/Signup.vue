@@ -72,6 +72,8 @@
         Already have an account?
       </base-button>
     </base-form>
+
+    <base-loading-overlay></base-loading-overlay>
   </base-page>
 </template>
 
@@ -100,6 +102,7 @@ export default {
         isValid: true,
         invalidMessage: "Passwords do not match",
       },
+      isLoading: false,
     };
   },
   methods: {
@@ -130,14 +133,20 @@ export default {
     },
     async signup() {
       if (!this.validateData()) return;
-      // create user account
-      await this.$store.dispatch("account/signup", {
-        fullName: this.userFullName,
-        email: this.userEmail,
-        password: this.confirmPassword,
-      });
-      // Redirect to homepage
-      this.$router.replace({ name: "home" });
+      this.isLoading = true;
+      try {
+        // create user account
+        await this.$store.dispatch("account/signup", {
+          fullName: this.userFullName,
+          email: this.userEmail,
+          password: this.confirmPassword,
+        });
+        // Redirect to homepage
+        this.$router.replace({ name: "home" });
+      } catch (error) {
+        console.log(error);
+      }
+      this.isLoading = false;
     },
   },
 };

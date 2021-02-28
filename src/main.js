@@ -17,6 +17,7 @@ import BaseActionItem from "./components/ui/actionbar/BaseActionItem.vue";
 import BaseActionBar from "./components/ui/actionbar/BaseActionBar.vue";
 import BaseForm from "./components/ui/BaseForm.vue";
 import BaseFormControl from "./components/ui/BaseFormControl.vue";
+import BaseLoadingOverlay from "./components/ui/BaseLoadingOverlay.vue";
 
 // Configure firebase
 const firebaseConfig = {
@@ -49,5 +50,6 @@ app.component("base-action-item", BaseActionItem);
 app.component("base-actionbar", BaseActionBar);
 app.component("base-form", BaseForm);
 app.component("base-form-control", BaseFormControl);
+app.component("base-loading-overlay", BaseLoadingOverlay);
 
 app.mount("#app");
