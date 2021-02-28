@@ -39,6 +39,16 @@
         Don&apos;t have an account?
       </base-button>
     </base-form>
+
+    <base-loading-overlay
+      v-if="isLoading"
+      message="Logging in"
+    ></base-loading-overlay>
+
+    <base-dialog :show="hasError" @dialog-close="clearError">
+      <template #header>Login failed</template>
+      <p>{{ error }}</p>
+    </base-dialog>
   </base-page>
 </template>
 
@@ -57,7 +67,14 @@ export default {
         isValid: true,
         invalidMessage: "Password must be atleast six characters long",
       },
+      isLoading: false,
+      error: null,
     };
+  },
+  computed: {
+    hasError() {
+      return !!this.error;
+    },
   },
   methods: {
     tryValidateEmail() {
@@ -73,10 +90,26 @@ export default {
         return false;
       return true;
     },
-    login() {
+    clearError() {
+      this.error = null;
+    },
+    setError(errorMessage) {
+      this.error = errorMessage;
+    },
+    async login() {
       if (!this.validateData()) return;
-      // Log in the user
-      console.log("Logged IN");
+      this.isLoading = true;
+      try {
+        await this.$store.dispatch("account/login", {
+          email: this.userEmail,
+          password: this.userPassword,
+        });
+        // Redirect to homepage
+        this.$router.replace({ name: "home" });
+      } catch (error) {
+        this.setError(error.message);
+      }
+      this.isLoading = false;
     },
   },
 };
