@@ -5,9 +5,7 @@ import actions from "./actions.js";
 export default {
   namespaced: true,
   state() {
-    return {
-      currentUser: null,
-    };
+    return {};
   },
   getters,
   mutations,

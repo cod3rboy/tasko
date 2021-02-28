@@ -35,6 +35,11 @@ const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
+      path: "/",
+      name: "home",
+      redirect: { name: "manage-categories" },
+    },
+    {
       path: "/login",
       component: Login,
       name: "login",
@@ -48,18 +53,27 @@ const router = createRouter({
       path: "/categories/manage",
       component: ManageCategories,
       name: "manage-categories",
+      meta: {
+        requiresAuth: true,
+      },
     },
     {
       path: "/:categoryId/new",
       component: NewTask,
       name: "new-task",
       props: true,
+      meta: {
+        requiresAuth: true,
+      },
       beforeEnter: verifyCategoryNavigation,
     },
     {
       path: "/:categoryId",
       name: "category-tasks",
       component: TheTabLayout,
+      meta: {
+        requiresAuth: true,
+      },
       redirect: (to) => {
         return {
           name: "active-tasks",
@@ -94,6 +108,9 @@ const router = createRouter({
       name: "task-detail",
       component: TaskDetail,
       props: true,
+      meta: {
+        requiresAuth: true,
+      },
       beforeEnter: verifyTaskNavigation,
     },
     {
@@ -101,6 +118,9 @@ const router = createRouter({
       name: "task-edit",
       component: EditTask,
       props: true,
+      meta: {
+        requiresAuth: true,
+      },
       beforeEnter: verifyTaskNavigation,
     },
     {
@@ -111,5 +131,16 @@ const router = createRouter({
       props: true,
     },
   ],
+});
+
+router.beforeEach((to, _, next) => {
+  if (!!to.meta && !!to.meta.requiresAuth) {
+    if (!store.getters["account/hasLoggedIn"]) {
+      // redirect Guest User to login page
+      next({ name: "login" });
+      return;
+    }
+  }
+  next();
 });
 export default router;

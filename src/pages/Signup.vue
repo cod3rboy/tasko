@@ -128,14 +128,16 @@ export default {
         this.confirmPwdValidation.isValid
       );
     },
-    signup() {
+    async signup() {
       if (!this.validateData()) return;
       // create user account
-      this.$store.dispatch("account/signup", {
+      await this.$store.dispatch("account/signup", {
         fullName: this.userFullName,
         email: this.userEmail,
         password: this.confirmPassword,
       });
+      // Redirect to homepage
+      this.$router.replace({ name: "home" });
     },
   },
 };
