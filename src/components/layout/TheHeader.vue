@@ -1,7 +1,12 @@
 <template>
   <header class="page-header">
     <h1>Tasko</h1>
-    <button class="toggle" :class="{ back: isOpen }" @click="toggleMenu">
+    <button
+      class="toggle"
+      :class="{ back: isOpen }"
+      @click="toggleMenu"
+      v-if="userHasLoggedIn"
+    >
       Menu
     </button>
   </header>
@@ -15,6 +20,11 @@ export default {
       type: Boolean,
       required: false,
       default: false,
+    },
+  },
+  computed: {
+    userHasLoggedIn() {
+      return this.$store.getters["account/hasLoggedIn"];
     },
   },
   methods: {
