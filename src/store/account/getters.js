@@ -1,10 +1,8 @@
-import firebase from "firebase/app";
-
 export default {
-  currentUser() {
-    return firebase.auth().currentUser;
+  currentUser(state) {
+    return state.currentUser;
   },
-  hasLoggedIn() {
-    return !!firebase.auth().currentUser;
+  hasLoggedIn(state) {
+    return !!state.currentUser;
   },
 };
