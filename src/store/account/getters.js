@@ -8,4 +8,7 @@ export default {
   userInfo(state) {
     return state.user.info;
   },
+  userFullName(state) {
+    return state.user.info ? state.user.info.displayName : "";
+  },
 };

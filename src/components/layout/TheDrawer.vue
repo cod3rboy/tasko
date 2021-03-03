@@ -2,7 +2,7 @@
   <div class="backdrop" v-if="isOpen" @click="$emit('close-drawer')"></div>
   <nav class="drawer" :class="{ closed: !isOpen }">
     <div class="brand">
-      <h1 class="brand-name">Tasko</h1>
+      <h4 class="brand-name">Tasko</h4>
       <p class="tag-line">Go crazy with task management!</p>
       <button class="toggle" @click="$emit('close-drawer')">
         Close Drawer
@@ -29,6 +29,10 @@
         </button>
       </li>
     </ul>
+    <div class="user-info">
+      <span>Hi! {{ userFullName }}</span>
+      <base-button look="primary" @click="logOutUser">Log Out</base-button>
+    </div>
   </nav>
 </template>
 <script>
@@ -44,6 +48,18 @@ export default {
       type: Array,
       required: true,
       default: [],
+    },
+  },
+  computed: {
+    userFullName() {
+      return this.$store.getters["account/userFullName"];
+    },
+  },
+  methods: {
+    logOutUser() {
+      this.$store.dispatch("account/logout");
+      this.$router.push({ name: "login" });
+      this.$emit("close-drawer");
     },
   },
 };
@@ -65,11 +81,10 @@ export default {
   top: 0;
   left: 0;
   height: 100vh;
-  padding-bottom: 1em;
   width: 100vw;
   position: fixed;
   display: grid;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: auto auto 1fr;
   grid-template-columns: 1fr;
   color: var(--color-drawer-text);
   background-color: var(--color-drawer-surface);
@@ -83,10 +98,10 @@ export default {
 }
 .drawer > .brand {
   position: relative;
-  letter-spacing: 0.5rem;
+  letter-spacing: 0.25rem;
   text-transform: uppercase;
   margin: 0;
-  padding: 1rem 1.5rem 1rem 2rem;
+  padding: 0.5rem 1rem 0.5rem 2rem;
   background: var(--color-drawer-surface);
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   color: var(--color-primary);
@@ -98,7 +113,7 @@ export default {
   padding: 0;
 }
 .brand > .tag-line {
-  margin: 0.5em 0 0 0;
+  margin: 0.25em 0 0 0;
   font-size: 1.2rem;
   letter-spacing: 0;
   color: var(--color-surface-text);
@@ -133,7 +148,6 @@ export default {
   top: 0em;
   left: 0em;
 }
-
 .drawer > .menu {
   list-style: none;
   padding: 0;
@@ -235,6 +249,23 @@ export default {
 }
 .menu-item-action:hover::after {
   transform: scaleX(1);
+}
+
+.drawer > .user-info {
+  grid-row: 3 / 4;
+  grid-column: 1 / 2;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  padding: 1rem 1rem 1rem 2rem;
+  background: var(--color-drawer-surface);
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  color: var(--color-primary);
+}
+.drawer > .user-info > *:first-child {
+  flex: 1 1 auto;
 }
 
 @supports (backdrop-filter: blur(8px)) {
