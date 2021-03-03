@@ -1,8 +1,11 @@
 export default {
   currentUser(state) {
-    return state.currentUser;
+    return state.user;
   },
-  hasLoggedIn(state) {
-    return !!state.currentUser;
+  userLoggedIn(state) {
+    return !!state.user.isLoggedIn;
+  },
+  userInfo(state) {
+    return state.user.info;
   },
 };

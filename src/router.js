@@ -134,8 +134,9 @@ const router = createRouter({
 });
 
 router.beforeEach((to, _, next) => {
+  console.log("beforeEach() invoked");
   if (!!to.meta && !!to.meta.requiresAuth) {
-    if (!store.getters["account/hasLoggedIn"]) {
+    if (!store.getters["account/userLoggedIn"]) {
       // redirect Guest User to login page
       next({ name: "login" });
       return;

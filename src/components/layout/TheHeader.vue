@@ -24,7 +24,7 @@ export default {
   },
   computed: {
     userHasLoggedIn() {
-      return this.$store.getters["account/hasLoggedIn"];
+      return this.$store.getters["account/userLoggedIn"];
     },
   },
   methods: {
