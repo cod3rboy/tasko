@@ -43,11 +43,17 @@ const router = createRouter({
       path: "/login",
       component: Login,
       name: "login",
+      meta: {
+        requiresAuth: false,
+      },
     },
     {
       path: "/signup",
       component: Signup,
       name: "signup",
+      meta: {
+        requiresAuth: false,
+      },
     },
     {
       path: "/categories/manage",
@@ -134,10 +140,16 @@ const router = createRouter({
 });
 
 router.beforeEach((to, _, next) => {
-  if (!!to.meta && !!to.meta.requiresAuth) {
-    if (!store.getters["account/userLoggedIn"]) {
+  if (!!to.meta) {
+    const requireAuthentication = !!to.meta.requiresAuth;
+    const userLoggedIn = store.getters["account/userLoggedIn"];
+    if (requireAuthentication && !userLoggedIn) {
       // redirect Guest User to login page
       next({ name: "login" });
+      return;
+    } else if (!requireAuthentication && userLoggedIn) {
+      // redirect Logged in user to home page
+      next({ name: "home" });
       return;
     }
   }

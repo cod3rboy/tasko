@@ -56,8 +56,8 @@ export default {
     },
   },
   methods: {
-    logOutUser() {
-      this.$store.dispatch("account/logout");
+    async logOutUser() {
+      await this.$store.dispatch("account/logout");
       this.$router.push({ name: "login" });
       this.$emit("close-drawer");
     },
