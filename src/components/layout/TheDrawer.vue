@@ -10,6 +10,16 @@
     </div>
     <ul class="menu">
       <li class="menu-heading">Task Categories</li>
+      <li class="menu-item" @click="$emit('close-drawer')">
+        <router-link
+          :to="{
+            name: 'category-tasks',
+            params: { categoryId: defaultCategoryId },
+          }"
+        >
+          <i class="fas fa-list-alt"></i> {{ defaultCategoryName }}
+        </router-link>
+      </li>
       <li
         class="menu-item"
         v-for="category in navCategories"
@@ -53,6 +63,12 @@ export default {
   computed: {
     userFullName() {
       return this.$store.getters["account/userFullName"];
+    },
+    defaultCategoryId() {
+      return this.$store.getters["category/defaultCategoryId"];
+    },
+    defaultCategoryName() {
+      return this.$store.getters["category/defaultCategoryName"];
     },
   },
   methods: {

@@ -14,7 +14,9 @@ import store from "./store/index.js";
 
 function verifyCategoryNavigation(to, _, next) {
   const categoryId = to.params.categoryId;
-  const categories = store.getters["category/categories"];
+  const categories = store.getters["category/categories"].concat(
+    store.getters["category/defaultCategory"] // also consider default category
+  );
   if (categories.filter((category) => category.id === categoryId).length > 0) {
     next();
   } else {

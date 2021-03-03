@@ -16,8 +16,14 @@ export default {
   computed: {
     finishedTasks() {
       const tasks = this.$store.getters["task/tasks"];
+      const defaultCategoryId = this.$store.getters[
+        "category/defaultCategoryId"
+      ];
       return tasks.filter(
-        (task) => task.category === this.categoryId && task.finished
+        (task) =>
+          (this.categoryId === defaultCategoryId ||
+            task.category === this.categoryId) &&
+          task.finished
       );
     },
   },

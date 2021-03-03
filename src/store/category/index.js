@@ -6,6 +6,10 @@ export default {
   namespaced: true,
   state() {
     return {
+      defaultCategory: {
+        id: "all",
+        name: "All Tasks",
+      },
       categories: [
         { id: "c1", name: "Home Tasks" },
         { id: "c2", name: "Daily Tasks" },

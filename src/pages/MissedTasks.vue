@@ -16,9 +16,13 @@ export default {
   computed: {
     missedTasks() {
       const tasks = this.$store.getters["task/tasks"];
+      const defaultCategoryId = this.$store.getters[
+        "category/defaultCategoryId"
+      ];
       return tasks.filter(
         (task) =>
-          task.category === this.categoryId &&
+          (this.categoryId === defaultCategoryId ||
+            task.category === this.categoryId) &&
           !task.finished &&
           task.dueDate <= new Date().getTime()
       );
