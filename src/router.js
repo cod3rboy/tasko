@@ -14,9 +14,7 @@ import store from "./store/index.js";
 
 function verifyCategoryNavigation(to, _, next) {
   const categoryId = to.params.categoryId;
-  const categories = store.getters["category/categories"].concat(
-    store.getters["category/defaultCategory"] // also consider default category
-  );
+  const categories = store.getters["app/categories"];
   if (categories.filter((category) => category.id === categoryId).length > 0) {
     next();
   } else {
@@ -24,8 +22,9 @@ function verifyCategoryNavigation(to, _, next) {
   }
 }
 function verifyTaskNavigation(to, _, next) {
+  const categoryId = to.params.categoryId;
   const taskId = to.params.taskId;
-  const tasks = store.getters["task/tasks"];
+  const tasks = store.getters["app/tasks"](categoryId);
   if (tasks.filter((task) => task.id === taskId).length > 0) {
     next();
   } else {
