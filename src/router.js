@@ -33,8 +33,6 @@ function verifyTaskNavigation(to, _, next) {
   }
 }
 
-const defaultCategoryId = store.getters["category/defaultCategoryId"];
-
 const router = createRouter({
   history: createWebHistory(),
   routes: [
@@ -42,12 +40,11 @@ const router = createRouter({
       path: "/",
       name: "home",
       redirect: {
-        name: "category-tasks",
-        params: { categoryId: defaultCategoryId },
+        name: "manage-categories",
       },
     },
     {
-      path: "/login",
+      path: "/account/login",
       component: Login,
       name: "login",
       meta: {
@@ -55,7 +52,7 @@ const router = createRouter({
       },
     },
     {
-      path: "/signup",
+      path: "/account/signup",
       component: Signup,
       name: "signup",
       meta: {
@@ -69,16 +66,6 @@ const router = createRouter({
       meta: {
         requiresAuth: true,
       },
-    },
-    {
-      path: "/:categoryId/new",
-      component: NewTask,
-      name: "new-task",
-      props: true,
-      meta: {
-        requiresAuth: true,
-      },
-      beforeEnter: verifyCategoryNavigation,
     },
     {
       path: "/:categoryId",
@@ -117,7 +104,17 @@ const router = createRouter({
       props: true,
     },
     {
-      path: "/tasks/:taskId",
+      path: "/:categoryId/tasks/new",
+      component: NewTask,
+      name: "new-task",
+      props: true,
+      meta: {
+        requiresAuth: true,
+      },
+      beforeEnter: verifyCategoryNavigation,
+    },
+    {
+      path: "/:categoryId/tasks/:taskId/view",
       name: "task-detail",
       component: TaskDetail,
       props: true,
@@ -127,7 +124,7 @@ const router = createRouter({
       beforeEnter: verifyTaskNavigation,
     },
     {
-      path: "/tasks/:taskId/edit",
+      path: "/:categoryId/tasks/:taskId/edit",
       name: "task-edit",
       component: EditTask,
       props: true,
