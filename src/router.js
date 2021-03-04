@@ -33,13 +33,18 @@ function verifyTaskNavigation(to, _, next) {
   }
 }
 
+const defaultCategoryId = store.getters["category/defaultCategoryId"];
+
 const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
       path: "/",
       name: "home",
-      redirect: { name: "manage-categories" },
+      redirect: {
+        name: "category-tasks",
+        params: { categoryId: defaultCategoryId },
+      },
     },
     {
       path: "/login",

@@ -11,4 +11,7 @@ export default {
   userFullName(state) {
     return state.user.info ? state.user.info.displayName : "";
   },
+  userId(state) {
+    return state.user.info ? state.user.info.uid : null;
+  },
 };
